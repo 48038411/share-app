@@ -1,0 +1,25 @@
+server:
+  port: 8089
+
+spring:
+  application:
+    name: user-center
+  datasource:
+    url: jdbc:mysql://47.115.60.46:3306/content_center
+    hikari:
+      username: root
+      password: 123456
+      driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 47.115.60.46:8848
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
