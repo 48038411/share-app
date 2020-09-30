@@ -1,5 +1,5 @@
 server:
-  port: 8088
+  port: 8090
 
 spring:
   application:
@@ -14,6 +14,11 @@ spring:
     nacos:
       discovery:
         server-addr: 47.115.60.46:8848
+        #配置元数据
+        metadata:
+          hello: world
+          version: 0.1
+#        namespace: 5a7fca12-1710-4fe9-8ce9-68329156cfdd
 
 management:
   endpoints:

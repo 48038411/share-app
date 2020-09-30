@@ -1,9 +1,9 @@
 server:
-  port: 8089
+  port: 8083
 
 spring:
   application:
-    name: user-center
+    name: content-center
   datasource:
     url: jdbc:mysql://47.115.60.46:3306/content_center
     hikari:
@@ -14,6 +14,9 @@ spring:
     nacos:
       discovery:
         server-addr: 47.115.60.46:8848
+  main:
+    allow-bean-definition-overriding: true
+#        namespace: 5a7fca12-1710-4fe9-8ce9-68329156cfdd
 
 management:
   endpoints:
@@ -23,3 +26,19 @@ management:
   endpoint:
     health:
       show-details: always
+user-center:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+ribbon:
+  eager-load:
+    enabled: true
+    clients: user-center
+logging:
+  level:
+#    一定是debug才能打印
+    com.soft1851.share.content.feignclient.UserCenterFeignClient: debug
+#feign:
+#  client:
+#    config:
+#      user-center:
+#        loggerLevel: full
