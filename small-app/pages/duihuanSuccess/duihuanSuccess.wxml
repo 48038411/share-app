@@ -1,0 +1,4 @@
+<!--pages/duihuanSuccess/duihuanSuccess.wxml-->
+<view class="container">
+  <text>兑换成功{{share.id}}</text>
+</view>

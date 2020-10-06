@@ -1,0 +1,523 @@
+= share-app Swagger 文档
+
+
+[[_overview]]
+== Overview
+github地址 https://github.com/48038411/micro-service/share-app
+
+
+=== Version information
+[%hardbreaks]
+__Version__ : API V1.0
+
+
+=== Contact information
+[%hardbreaks]
+__Contact__ : 郭瑞昌
+__Contact Email__ : 48038411@qq.com
+
+
+=== License information
+[%hardbreaks]
+__License__ : Apache
+__License URL__ : http://www.apache.org/
+__Terms of service__ : Terms of service
+
+
+=== URI scheme
+[%hardbreaks]
+__Host__ : localhost:8083
+__BasePath__ : /
+
+
+=== Tags
+
+* test-controller : Test Controller
+* 公告接口 : Notice Controller
+* 分享接口 : Share Controller
+
+
+
+
+[[_paths]]
+== Resources
+
+[[_test-controller_resource]]
+=== Test-controller
+Test Controller
+
+
+[[_indexusingget]]
+==== index
+....
+GET /test/baidu
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getribbonusingget]]
+==== getRibbon
+....
+GET /test/call/ribbon
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**name** +
+__required__|name|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getusingget]]
+==== get
+....
+GET /test/discovery
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_serviceinstance,ServiceInstance>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_hellousingget]]
+==== hello
+....
+GET /test/hello
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_queryusingget_1]]
+==== query
+....
+GET /test/test-q
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^4"]
+|===
+|Type|Name|Schema
+|**Query**|**avatarUrl** +
+__optional__|string
+|**Query**|**bonus** +
+__optional__|integer (int32)
+|**Query**|**createTime** +
+__optional__|string (date-time)
+|**Query**|**id** +
+__optional__|integer (int32)
+|**Query**|**roles** +
+__optional__|string
+|**Query**|**updateTime** +
+__optional__|string (date-time)
+|**Query**|**wxId** +
+__optional__|string
+|**Query**|**wxNickname** +
+__optional__|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_userdto,UserDTO>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_917a6a0ad3b9cec276900e3a86586a07]]
+=== 公告接口
+Notice Controller
+
+
+[[_gettopnoticeusingget]]
+==== 查询最新一条公告
+....
+GET /notice/one
+....
+
+
+===== Description
+查询最新一条公告
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_fa86f1a57d6f758a93cb33b59c015654,公告>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_3ecef281a805f36ea4142625eefacc12]]
+=== 分享接口
+Share Controller
+
+
+[[_getsharebyidusingget]]
+==== 查询指定id的分享详情
+....
+GET /shares/one/{id}
+....
+
+
+===== Description
+查询指定id的分享详情
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|id|integer (int32)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_sharedto,ShareDTO>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_queryusingget]]
+==== 分享列表
+....
+GET /shares/query
+....
+
+
+===== Description
+分享列表
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4,.^2"]
+|===
+|Type|Name|Description|Schema|Default
+|**Query**|**pageNo** +
+__optional__|pageNo|integer (int32)|`1`
+|**Query**|**pageSize** +
+__optional__|pageSize|integer (int32)|`10`
+|**Query**|**title** +
+__optional__|title|string|
+|**Query**|**userId** +
+__optional__|userId|integer (int32)|
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_c31f48f84ef207e66a03c015a7243b43,分享>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
+
+
+[[_definitions]]
+== Definitions
+
+[[_serviceinstance]]
+=== ServiceInstance
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**host** +
+__optional__|string
+|**instanceId** +
+__optional__|string
+|**metadata** +
+__optional__|< string, string > map
+|**port** +
+__optional__|integer (int32)
+|**scheme** +
+__optional__|string
+|**secure** +
+__optional__|boolean
+|**serviceId** +
+__optional__|string
+|**uri** +
+__optional__|<<_uri,URI>>
+|===
+
+
+[[_sharedto]]
+=== ShareDTO
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**auditStatus** +
+__optional__|string
+|**author** +
+__optional__|string
+|**buyCount** +
+__optional__|integer (int32)
+|**cover** +
+__optional__|string
+|**createTime** +
+__optional__|string (date-time)
+|**downloadUrl** +
+__optional__|string
+|**id** +
+__optional__|integer (int32)
+|**isOriginal** +
+__optional__|boolean
+|**price** +
+__optional__|integer (int32)
+|**reason** +
+__optional__|string
+|**share** +
+__optional__|<<_c31f48f84ef207e66a03c015a7243b43,分享>>
+|**showFlag** +
+__optional__|boolean
+|**summary** +
+__optional__|string
+|**title** +
+__optional__|string
+|**updateTime** +
+__optional__|string (date-time)
+|**userId** +
+__optional__|integer (int32)
+|**wxNickname** +
+__optional__|string
+|===
+
+
+[[_uri]]
+=== URI
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**absolute** +
+__optional__|boolean
+|**authority** +
+__optional__|string
+|**fragment** +
+__optional__|string
+|**host** +
+__optional__|string
+|**opaque** +
+__optional__|boolean
+|**path** +
+__optional__|string
+|**port** +
+__optional__|integer (int32)
+|**query** +
+__optional__|string
+|**rawAuthority** +
+__optional__|string
+|**rawFragment** +
+__optional__|string
+|**rawPath** +
+__optional__|string
+|**rawQuery** +
+__optional__|string
+|**rawSchemeSpecificPart** +
+__optional__|string
+|**rawUserInfo** +
+__optional__|string
+|**scheme** +
+__optional__|string
+|**schemeSpecificPart** +
+__optional__|string
+|**userInfo** +
+__optional__|string
+|===
+
+
+[[_userdto]]
+=== UserDTO
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**avatarUrl** +
+__optional__|string
+|**bonus** +
+__optional__|integer (int32)
+|**createTime** +
+__optional__|string (date-time)
+|**id** +
+__optional__|integer (int32)
+|**roles** +
+__optional__|string
+|**updateTime** +
+__optional__|string (date-time)
+|**wxId** +
+__optional__|string
+|**wxNickname** +
+__optional__|string
+|===
+
+
+[[_fa86f1a57d6f758a93cb33b59c015654]]
+=== 公告
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**content** +
+__optional__|公告内容|string
+|**createTime** +
+__optional__|创建时间|string (date-time)
+|**id** +
+__optional__|公告id|integer (int32)
+|**showFlag** +
+__optional__|是否显示 0：否 1：是|boolean
+|===
+
+
+[[_c31f48f84ef207e66a03c015a7243b43]]
+=== 分享
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**auditStatus** +
+__optional__|批阅状态|string
+|**author** +
+__optional__|资源作者|string
+|**buyCount** +
+__optional__|购买数量|integer (int32)
+|**cover** +
+__optional__|封面|string
+|**createTime** +
+__optional__|创建时间|string (date-time)
+|**downloadUrl** +
+__optional__|下载地址|string
+|**id** +
+__optional__|分享id|integer (int32)
+|**isOriginal** +
+__optional__|是否原创 0：不是 1：是|boolean
+|**price** +
+__optional__|价格|integer (int32)
+|**reason** +
+__optional__|不予通过原因|string
+|**showFlag** +
+__optional__|是否展示 0：不展示 1：展示|boolean
+|**summary** +
+__optional__|摘要|string
+|**title** +
+__optional__|标题|string
+|**updateTime** +
+__optional__|更新时间|string (date-time)
+|**userId** +
+__optional__|分享人id|integer (int32)
+|===
+
+
+
+
+

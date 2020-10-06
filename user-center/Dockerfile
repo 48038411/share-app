@@ -8,5 +8,5 @@ ENV TZ Asia/Shanghai
 # 设置时区为上海
 ENV JAVA_OPS -Duser.timezone=Asia/Shanghai
 
-EXPOSE 8090
+EXPOSE 8099
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","./app.jar"]

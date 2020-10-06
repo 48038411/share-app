@@ -21,5 +21,6 @@ class UserServiceTest {
 
     @Test
     void getUserInfo() {
+        System.out.println(userService.findById(1));
     }
 }

@@ -1,5 +1,6 @@
 package com.soft1851.share.content.domain.dto;
 
+import com.soft1851.share.content.domain.entity.Share;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -97,4 +98,5 @@ public class ShareDTO {
      * 发布人
      */
     private String wxNickname;
+    private Share share;
 }
