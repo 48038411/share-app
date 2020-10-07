@@ -1,11 +1,18 @@
 //app.js
 App({
+  globalData: {
+    userInfo: null,
+    user:{
+      name:'吃不饱',
+      cover:'https://avatars1.githubusercontent.com/u/55436087?s=60&v=4',
+      bonus: 200
+    }
+  },
   onLaunch: function () {
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
     // 登录
     wx.login({
       success: res => {
@@ -32,13 +39,5 @@ App({
         }
       }
     })
-  },
-  globalData: {
-    userInfo: null,
-    user:{
-      name:'吃不饱',
-      cover:'https://avatars1.githubusercontent.com/u/55436087?s=60&v=4',
-      bonus: 200
-    }
   }
 })

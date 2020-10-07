@@ -19,7 +19,10 @@ spring:
           hello: world
           version: 0.1
 #        namespace: 5a7fca12-1710-4fe9-8ce9-68329156cfdd
-
+rocketmq:
+  name-server: 47.115.60.46:9876
+  producer:
+    group: test-group
 management:
   endpoints:
     web:

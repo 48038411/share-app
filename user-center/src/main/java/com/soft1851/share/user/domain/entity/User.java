@@ -38,6 +38,8 @@ public class User {
     private String avatarUrl;
     @Column(name = "update_time")
     private Date updateTime;
+    @Column(name = "bonus")
+    private Integer bonus;
     @Column(name = "create_time")
     private Date createTime;
 }

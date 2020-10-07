@@ -1,15 +1,27 @@
 package com.soft1851.share.content.service;
 
 import com.github.pagehelper.PageInfo;
+import com.soft1851.share.content.domain.dto.ShareAuditDTO;
 import com.soft1851.share.content.domain.dto.ShareDTO;
+import com.soft1851.share.content.domain.dto.ShareRequestDTO;
 import com.soft1851.share.content.domain.entity.Share;
 
+/**
+ * @author Guorc
+ */
 public interface ShareService {
     /**
      * 获得分享详情
      * @return  ShareDTO
      */
     ShareDTO findById(Integer id);
+
+    /**
+     * 投稿接口
+     * @param shareRequestDTO
+     * @return
+     */
+    int insert(ShareRequestDTO shareRequestDTO);
 
     String getHello();
 
@@ -22,4 +34,12 @@ public interface ShareService {
      * @return PageInfo<Share>
      */
     PageInfo<Share> query(String title, Integer pageNo, Integer pageSize, Integer userId);
+
+    /**
+     * 审核投稿
+     * @param id
+     * @param shareAuditDTO
+     * @return
+     */
+    Share auditById(Integer id, ShareAuditDTO shareAuditDTO);
 }

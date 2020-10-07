@@ -20,6 +20,8 @@ import tk.mybatis.spring.annotation.MapperScan;
 public class ContentCenterApplication {
 
     public static void main(String[] args) {
+//        MD5Service md5Service = new MD5Service();
+//        md5Service.getMD5()
         SpringApplication.run(ContentCenterApplication.class, args);
     }
     @Bean

@@ -1,5 +1,7 @@
 package com.soft1851.share.content.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.soft1851.share.content.domain.dto.UserDTO;
 import com.soft1851.share.content.feignclient.TestBaiduFeignClient;
 import com.soft1851.share.content.feignclient.TestUserCenterFeignClient;
@@ -50,5 +52,13 @@ public class TestController {
     @GetMapping(value = "call/ribbon")
     public String getRibbon(@RequestParam("name") String name) {
         return restTemplate.getForObject("http://user-center/user/info/{name}", String.class,name);
+    }
+    @GetMapping("byResources")
+    @SentinelResource(value = "hello",blockHandler = "handleException")
+    public String byResources(){
+        return "按名称限流";
+    }
+    public String handleException(BlockException blockException){
+        return "服务不可用";
     }
 }

@@ -1,6 +1,7 @@
 package com.soft1851.share.content.controller;
 
 import com.soft1851.share.content.domain.dto.ShareDTO;
+import com.soft1851.share.content.domain.dto.ShareRequestDTO;
 import com.soft1851.share.content.domain.entity.Share;
 import com.soft1851.share.content.service.ShareService;
 import io.swagger.annotations.Api;
@@ -40,5 +41,11 @@ public class ShareController {
             pageSize = 100;
         }
         return this.shareService.query(title,pageNo,pageSize,userId).getList();
+    }
+
+    @PostMapping(value = "/contribute")
+    @ApiOperation(value = "投稿接口",notes = "投稿接口")
+    public int contribute(@RequestBody ShareRequestDTO shareRequestDTO){
+        return this.shareService.insert(shareRequestDTO);
     }
 }
