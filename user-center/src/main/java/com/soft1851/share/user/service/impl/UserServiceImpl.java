@@ -1,14 +1,18 @@
 package com.soft1851.share.user.service.impl;
 
 import com.soft1851.share.user.common.ResponseResult;
+import com.soft1851.share.user.dao.BonusEventLogMapper;
 import com.soft1851.share.user.dao.UserMapper;
+import com.soft1851.share.user.domain.dto.UserAddBonusMsgDTO;
 import com.soft1851.share.user.domain.dto.UserDTO;
+import com.soft1851.share.user.domain.entity.BonusEventLog;
 import com.soft1851.share.user.domain.entity.User;
 import com.soft1851.share.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,20 +26,7 @@ import java.util.Map;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
-    @Override
-    public ResponseResult login(UserDTO userDTO) {
-//        User user = userMapper.findByAccount(userDTO.getAccount());
-//        if (user != null){
-//            if (userDTO.getPassword().equals(user.getPassword())){
-//                return new ResponseResult(0,"登录成功",user);
-//            }else {
-//                return new ResponseResult(-1,"密码错误","密码错误");
-//            }
-//        }else {
-//            return new ResponseResult(1001,"用户不存在","用户名不存在");
-//        }
-        return new ResponseResult(1001,"用户不存在","用户名不存在");
-    }
+    private final BonusEventLogMapper bonusEventLogMapper;
 
     @Override
     public ResponseResult getUserInfo(Integer id) {
@@ -47,5 +38,22 @@ public class UserServiceImpl implements UserService {
         public User findById(Integer id) {
             return this.userMapper.selectByPrimaryKey(id);
 
+    }
+
+    @Override
+    public User updateBonus(UserAddBonusMsgDTO addBonusMsgDTO) {
+        User user = this.userMapper.selectByPrimaryKey(addBonusMsgDTO.getUserId());
+        user.setBonus(user.getBonus()+addBonusMsgDTO.getBonus());
+        this.userMapper.updateByPrimaryKeySelective(user);
+        //写积分日志
+        this.bonusEventLogMapper.insert(BonusEventLog.builder()
+                .userId(addBonusMsgDTO.getUserId())
+                .value(addBonusMsgDTO.getBonus())
+                .event("CONTRIBUTE")
+                .createTime(new Date())
+                .description("投稿加积分")
+                .build()
+        );
+        return user;
     }
 }

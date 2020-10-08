@@ -8,10 +8,10 @@ import com.soft1851.share.content.feignclient.TestUserCenterFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.util.concurrent.ListenableFuture;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.AsyncRestTemplate;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -29,6 +29,8 @@ public class TestController {
     private DiscoveryClient discoveryClient;
     @Autowired
     private RestTemplate restTemplate;
+    @Autowired
+    private AsyncRestTemplate asyncRestTemplate;
     @Autowired
     private TestUserCenterFeignClient testUserCenterFeignClient;
     @Autowired
@@ -49,9 +51,13 @@ public class TestController {
     public String index(){
         return testBaiduFeignClient.index();
     }
-    @GetMapping(value = "call/ribbon")
-    public String getRibbon(@RequestParam("name") String name) {
-        return restTemplate.getForObject("http://user-center/user/info/{name}", String.class,name);
+    @GetMapping(value = "/call/ribbon/{id}")
+    public String getRibbon(@PathVariable Integer id) {
+        return restTemplate.getForObject("http://user-center/users/{id}", String.class,id);
+    }
+    @GetMapping(value = "/users/{id}")
+    public ListenableFuture<ResponseEntity<String>> getUser(@PathVariable Integer id){
+        return asyncRestTemplate.getForEntity("http://user-center/users/{id}", String.class,id);
     }
     @GetMapping("byResources")
     @SentinelResource(value = "hello",blockHandler = "handleException")

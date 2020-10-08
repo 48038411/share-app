@@ -1,16 +1,14 @@
 package com.soft1851.share.user.controller;
 
 import com.soft1851.share.user.common.ResponseResult;
+import com.soft1851.share.user.domain.dto.UserAddBonusMsgDTO;
 import com.soft1851.share.user.domain.dto.UserDTO;
 import com.soft1851.share.user.domain.entity.User;
 import com.soft1851.share.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 描述:
@@ -34,5 +32,8 @@ public class UserController {
         log.info("我被请求了...");
         return this.userService.findById(id);
     }
-
+    @PostMapping(value = "/bonus")
+    public User updateBonus(@RequestBody UserAddBonusMsgDTO userAddBonusMsgDTO){
+        return userService.updateBonus(userAddBonusMsgDTO);
+    }
 }

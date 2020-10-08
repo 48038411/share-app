@@ -1,5 +1,6 @@
 package com.soft1851.share.user.service;
 
+import com.soft1851.share.user.domain.dto.UserAddBonusMsgDTO;
 import com.soft1851.share.user.domain.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
@@ -22,5 +23,13 @@ class UserServiceTest {
     @Test
     void getUserInfo() {
         System.out.println(userService.findById(1));
+    }
+
+    @Test
+    void updateBonus() {
+        System.out.println(userService.updateBonus(UserAddBonusMsgDTO.builder()
+                .userId(1)
+                .bonus(50)
+                .build()));
     }
 }
