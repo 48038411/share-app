@@ -77,7 +77,6 @@ public class ShareServiceImpl implements ShareService {
                 .title(shareRequestDTO.getTitle())
                 .isOriginal(shareRequestDTO.getIsOriginal())
                 .author(shareRequestDTO.getAuthor())
-                .cover(shareRequestDTO.getCover())
                 .summary(shareRequestDTO.getSummary())
                 .price(shareRequestDTO.getPrice())
                 .downloadUrl(shareRequestDTO.getDownloadUrl())
@@ -98,20 +97,20 @@ public class ShareServiceImpl implements ShareService {
     @Override
     public PageInfo<Share> query(String title, Integer pageNo, Integer pageSize, Integer userId) {
         //启动分页
-        PageHelper.startPage(pageNo,pageSize);
+        PageHelper.startPage(pageNo, pageSize);
         //构造查询实例
         Example example = new Example(Share.class);
         Example.Criteria criteria = example.createCriteria();
         //如标题关键字不空，则加上模糊查询条件，否则结果即所有数据
-        if (StringUtil.isNotEmpty(title)){
-            criteria.andLike("title","%"+title+"%");
+        if (StringUtil.isNotEmpty(title)) {
+            criteria.andLike("title", "%" + title + "%");
         }
         //执行按条件查询
         List<Share> shares = this.shareMapper.selectByExample(example);
         //处理后的Share数据列表
         List<Share> shareDeal;
         // 1.如果用户未登录，那么downloadUrl全部设为null
-        if (userId == null){
+        if (userId == null) {
             shareDeal = shares.stream()
                     .peek(share -> {
                         share.setDownloadUrl(null);
@@ -129,7 +128,7 @@ public class ShareServiceImpl implements ShareService {
                                         .shareId(share.getId())
                                         .build()
                         );
-                        if (midUserShare == null){
+                        if (midUserShare == null) {
                             share.setDownloadUrl(null);
                         }
                     })
@@ -137,22 +136,24 @@ public class ShareServiceImpl implements ShareService {
         }
         return new PageInfo<>(shareDeal);
     }
+
     @Async
-    public void update(Share share){
+    public void update(Share share) {
         UserAddBonusMsgDTO userAddBonusMsgDTO = UserAddBonusMsgDTO.builder()
                 .userId(share.getUserId())
                 .bonus(50)
                 .build();
         this.userCenterFeignClient.updateBonus(userAddBonusMsgDTO);
     }
+
     @Override
     public Share auditById(Integer id, ShareAuditDTO shareAuditDTO) {
         //1,查询share是否存在，不存在或者当前的audit_status！=NOT_YET，那么抛出异常
         Share share = this.shareMapper.selectByPrimaryKey(id);
-        if (share == null){
+        if (share == null) {
             throw new IllegalArgumentException("参数非法！该分享不存在");
         }
-        if (!Objects.equals("NOT_YET",share.getAuditStatus())){
+        if (!Objects.equals("NOT_YET", share.getAuditStatus())) {
             throw new IllegalArgumentException("参数非法！该分享已审核通过或审核不通过");
         }
         //2,审核流程，将状态改为PASS或REJECT
@@ -160,19 +161,19 @@ public class ShareServiceImpl implements ShareService {
         share.setAuditStatus(shareAuditDTO.getAuditStatusEnum().toString());
         this.shareMapper.updateByPrimaryKey(share);
         //3,如果是PASS,那么发送消息给rocketmq，让用户中心去消费，并为发布人添加积分
-        if (AuditStatusEnum.PASS.equals(shareAuditDTO.getAuditStatusEnum())){
+        if (AuditStatusEnum.PASS.equals(shareAuditDTO.getAuditStatusEnum())) {
             long nowTime = System.currentTimeMillis();
             //1，rocketmq异步实现加积分
             this.rocketMQTemplate.convertAndSend(
                     "add-bonus",
                     UserAddBonusMsgDTO.builder()
-                    .userId(share.getUserId())
-                    .bonus(50)
-                    .build()
+                            .userId(share.getUserId())
+                            .bonus(50)
+                            .build()
             );
             long nowTime1 = System.currentTimeMillis();
-            long finalTime = nowTime1-nowTime;
-            log.info("使用异步rocketmq操作修改用户积分花费了时间,{}",finalTime);
+            long finalTime = nowTime1 - nowTime;
+            log.info("使用异步rocketmq操作修改用户积分花费了时间,{}", finalTime);
 //            //2，同步调用Feignclient修改用户积分
 //            long nowTime = System.currentTimeMillis();
 //            this.userCenterFeignClient.updateBonus(UserAddBonusMsgDTO.builder().userId(share.getUserId()).bonus(50).build());

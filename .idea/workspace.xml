@@ -1,7 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8ab14b3b-d840-4fd0-bb5f-0c2dd136e305" name="Default Changelist" comment="" />
+    <list default="true" id="a2cc4ebd-9145-414c-b7d5-bf2c0338f8a5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-app/components/uni-calendar/calendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/client-app/components/uni-calendar/calendar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-app/components/uni-calendar/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/client-app/components/uni-calendar/util.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-app/components/uni-icons/icons.js" beforeDir="false" afterPath="$PROJECT_DIR$/client-app/components/uni-icons/icons.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-app/components/uni-popup/message.js" beforeDir="false" afterPath="$PROJECT_DIR$/client-app/components/uni-popup/message.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-app/components/uni-popup/popup.js" beforeDir="false" afterPath="$PROJECT_DIR$/client-app/components/uni-popup/popup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-app/components/uni-swipe-action-item/bindingx.js" beforeDir="false" afterPath="$PROJECT_DIR$/client-app/components/uni-swipe-action-item/bindingx.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-app/components/uni-swipe-action-item/mpalipay.js" beforeDir="false" afterPath="$PROJECT_DIR$/client-app/components/uni-swipe-action-item/mpalipay.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-app/components/uni-swipe-action-item/mpother.js" beforeDir="false" afterPath="$PROJECT_DIR$/client-app/components/uni-swipe-action-item/mpother.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-app/components/uni-swipe-action-item/mpwxs.js" beforeDir="false" afterPath="$PROJECT_DIR$/client-app/components/uni-swipe-action-item/mpwxs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-app/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/client-app/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-app/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/client-app/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-app/pages.json" beforeDir="false" afterPath="$PROJECT_DIR$/client-app/pages.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-app/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/client-app/router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-app/uni.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client-app/uni.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-app/unpackage/dist/dev/app-plus/__uniappview.html" beforeDir="false" afterPath="$PROJECT_DIR$/client-app/unpackage/dist/dev/app-plus/__uniappview.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-app/unpackage/dist/dev/app-plus/app-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/client-app/unpackage/dist/dev/app-plus/app-config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-app/unpackage/dist/dev/app-plus/app-service.js" beforeDir="false" afterPath="$PROJECT_DIR$/client-app/unpackage/dist/dev/app-plus/app-service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-app/unpackage/dist/dev/app-plus/app-view.js" beforeDir="false" afterPath="$PROJECT_DIR$/client-app/unpackage/dist/dev/app-plus/app-view.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-app/unpackage/dist/dev/app-plus/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/client-app/unpackage/dist/dev/app-plus/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content-center/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/content-center/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content-center/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/content-center/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content-center/src/docs/asciidoc/html/all.html" beforeDir="false" afterPath="$PROJECT_DIR$/content-center/src/docs/asciidoc/html/all.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/ContentCenterApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/ContentCenterApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/configuration/GlobalFeignConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/configuration/GlobalFeignConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/configuration/NacosWeightedRule.java" beforeDir="false" afterPath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/configuration/NacosWeightedRule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/configuration/SwaggerConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/configuration/SwaggerConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/configuration/UserCenterFeignConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/configuration/UserCenterFeignConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/controller/NoticeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/controller/NoticeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/controller/ShareAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/controller/ShareAdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/controller/ShareController.java" beforeDir="false" afterPath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/controller/ShareController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/controller/TestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/domain/entity/MidUserShare.java" beforeDir="false" afterPath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/domain/entity/MidUserShare.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/domain/entity/Notice.java" beforeDir="false" afterPath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/domain/entity/Notice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/domain/entity/Share.java" beforeDir="false" afterPath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/domain/entity/Share.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/domain/enums/AuditStatusEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/domain/enums/AuditStatusEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/feignclient/TestBaiduFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/feignclient/TestBaiduFeignClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/feignclient/UserCenterFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/feignclient/UserCenterFeignClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/service/NoticeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/service/NoticeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/service/ShareService.java" beforeDir="false" afterPath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/service/ShareService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/service/impl/NoticeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/service/impl/NoticeServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/service/impl/ShareServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/content-center/src/main/java/com/soft1851/share/content/service/impl/ShareServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content-center/src/main/java/ribbon/RibbonConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/content-center/src/main/java/ribbon/RibbonConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content-center/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/content-center/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content-center/src/test/java/TestSentinel.java" beforeDir="false" afterPath="$PROJECT_DIR$/content-center/src/test/java/TestSentinel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content-center/src/test/java/com/soft1851/share/content/service/NoticeServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/content-center/src/test/java/com/soft1851/share/content/service/NoticeServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content-center/src/test/java/com/soft1851/share/content/service/ShareServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/content-center/src/test/java/com/soft1851/share/content/service/ShareServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/small-app/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/small-app/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/small-app/pages/duihuanSuccess/duihuanSuccess.js" beforeDir="false" afterPath="$PROJECT_DIR$/small-app/pages/duihuanSuccess/duihuanSuccess.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/small-app/pages/duihuanSuccess/duihuanSuccess.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/small-app/pages/duihuanSuccess/duihuanSuccess.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/small-app/pages/duihuanSuccess/duihuanSuccess.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/small-app/pages/duihuanSuccess/duihuanSuccess.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/small-app/pages/index/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/small-app/pages/index/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/small-app/pages/index/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/small-app/pages/index/index.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/small-app/pages/personal/personal.js" beforeDir="false" afterPath="$PROJECT_DIR$/small-app/pages/personal/personal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/small-app/pages/personal/personal.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/small-app/pages/personal/personal.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/small-app/pages/personal/personal.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/small-app/pages/personal/personal.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/small-app/pages/shareDetail/shareDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/small-app/pages/shareDetail/shareDetail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/small-app/pages/shareDetail/shareDetail.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/small-app/pages/shareDetail/shareDetail.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/small-app/pages/tougao/tougao.js" beforeDir="false" afterPath="$PROJECT_DIR$/small-app/pages/tougao/tougao.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/small-app/pages/tougao/tougao.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/small-app/pages/tougao/tougao.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/small-app/sitemap.json" beforeDir="false" afterPath="$PROJECT_DIR$/small-app/sitemap.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/small-app/utils/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/small-app/utils/util.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-center/src/main/java/com/soft1851/share/user/controller/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-center/src/main/java/com/soft1851/share/user/controller/HelloController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-center/src/main/java/com/soft1851/share/user/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-center/src/main/java/com/soft1851/share/user/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-center/src/main/java/com/soft1851/share/user/rocketmq/AddBonusListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-center/src/main/java/com/soft1851/share/user/rocketmq/AddBonusListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-center/src/main/java/com/soft1851/share/user/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-center/src/main/java/com/soft1851/share/user/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-center/src/main/java/com/soft1851/share/user/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-center/src/main/java/com/soft1851/share/user/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-center/src/main/resources/META-INF/additional-spring-configuration-metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/user-center/src/main/resources/META-INF/additional-spring-configuration-metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-center/src/test/java/com/soft1851/share/user/UserCenterApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-center/src/test/java/com/soft1851/share/user/dao/UserMapperTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-center/src/test/java/com/soft1851/share/user/service/UserServiceTest.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -11,7 +83,7 @@
     <option name="MAKE_PROJECT_ON_SAVE" value="true" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -22,8 +94,7 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectId" id="1hr9Uh3sAqaORAWU6i9vAfjQa8X" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="1icQm8lOP7UpYNbfhctLWlYUDdy" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -36,15 +107,6 @@
     <property name="settings.editor.selected.configurable" value="project.validation" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
-  <component name="RunManager">
-    <configuration name="UserCenterApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="share-app" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.soft1851.share.usercenter.UserCenterApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-  </component>
   <component name="SshConsoleOptionsProvider">
     <option name="myEncoding" value="UTF-8" />
   </component>
@@ -53,16 +115,26 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="8ab14b3b-d840-4fd0-bb5f-0c2dd136e305" name="Default Changelist" comment="" />
-      <created>1600758360309</created>
+      <changelist id="a2cc4ebd-9145-414c-b7d5-bf2c0338f8a5" name="Default Changelist" comment="" />
+      <created>1602204556755</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1600758360309</updated>
-      <workItem from="1600758364639" duration="26000" />
+      <updated>1602204556755</updated>
+      <workItem from="1602204561062" duration="408000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="421" y="101" key="FileChooserDialogImpl" timestamp="1602204676525">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="421" y="101" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1602204676525" />
+    <state x="28" y="0" key="new project wizard" timestamp="1602204685255">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="28" y="0" key="new project wizard/0.0.1280.720@0.0.1280.720" timestamp="1602204685255" />
   </component>
 </project>

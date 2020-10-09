@@ -12,12 +12,14 @@ import com.soft1851.share.content.domain.entity.Share;
 public interface ShareService {
     /**
      * 获得分享详情
-     * @return  ShareDTO
+     *
+     * @return ShareDTO
      */
     ShareDTO findById(Integer id);
 
     /**
      * 投稿接口
+     *
      * @param shareRequestDTO
      * @return
      */
@@ -27,6 +29,7 @@ public interface ShareService {
 
     /**
      * 根据标题模糊查询某个用户的分享列表数据，title为空则为所有数据，查询结果分页
+     *
      * @param title
      * @param pageNo
      * @param pageSize
@@ -37,6 +40,7 @@ public interface ShareService {
 
     /**
      * 审核投稿
+     *
      * @param id
      * @param shareAuditDTO
      * @return

@@ -18,16 +18,17 @@ import java.util.Collections;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfiguration {
-    private ApiInfo apiInfo(){
+    private ApiInfo apiInfo() {
         return new ApiInfo(
                 "share-app Swagger 文档",
                 "github地址 https://github.com/48038411/micro-service/share-app",
                 "API V1.0",
                 "Terms of service",
-                new Contact("郭瑞昌","https://guoruichang.cn","48038411@qq.com"),
-                "Apache","http://www.apache.org/", Collections.emptyList());
+                new Contact("郭瑞昌", "https://guoruichang.cn", "48038411@qq.com"),
+                "Apache", "http://www.apache.org/", Collections.emptyList());
 
     }
+
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)

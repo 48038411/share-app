@@ -26,6 +26,7 @@ public interface UserCenterFeignClient {
 
     /**
      * hello测试
+     *
      * @return String
      */
     @GetMapping("/user/hello")
@@ -33,6 +34,7 @@ public interface UserCenterFeignClient {
 
     /**
      * 修改积分日志
+     *
      * @param userAddBonusMsgDTO
      * @return
      */

@@ -24,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class NacosWeightedRule extends AbstractLoadBalancerRule {
     private final NacosDiscoveryProperties nacosDiscoveryProperties;
+
     @Override
     public void initWithNiwsConfig(IClientConfig clientConfig) {
     }
@@ -38,7 +39,7 @@ public class NacosWeightedRule extends AbstractLoadBalancerRule {
             NamingService namingService = nacosDiscoveryProperties.namingServiceInstance();
             //nacos client自动通过基于权重的负载均衡算法，给我们选择一个实例
             Instance instance = namingService.selectOneHealthyInstance(name);
-            log.info("选择的实例是:port={},instance={}",instance.getPort(),instance);
+            log.info("选择的实例是:port={},instance={}", instance.getPort(), instance);
             return new NacosServer(instance);
         } catch (NacosException e) {
             e.printStackTrace();

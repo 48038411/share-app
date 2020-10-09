@@ -27,39 +27,41 @@ public class HelloController {
     private DiscoveryClient discoveryClient;
     @Autowired
     private RestTemplate restTemplate;
-//    @GetMapping(value = "/hello")
+
+    //    @GetMapping(value = "/hello")
 //    public String hello(){
 //        return "This is user_center";
 //    }
     @GetMapping(value = "/call/hello")
-    public String call(){
+    public String call() {
         List<ServiceInstance> instances = discoveryClient.getInstances("content-center");
         int length = instances.size();
-            Random random = new Random();
-            int i = random.nextInt(length);
-            String targetUrl = instances.get(i).getUri().toString()+"/notice/list";
+        Random random = new Random();
+        int i = random.nextInt(length);
+        String targetUrl = instances.get(i).getUri().toString() + "/notice/list";
 
 //        String targetUrl = instances.stream()
 //                .map( instance -> instance.getUri().toString() + "/hello")
 //                .findFirst()
 //                .orElseThrow(() -> new IllegalArgumentException("当前没有实例!"));
-        log.info("请求的目标地址,{}",targetUrl);
-        return restTemplate.getForObject(targetUrl,String.class);
+        log.info("请求的目标地址,{}", targetUrl);
+        return restTemplate.getForObject(targetUrl, String.class);
     }
+
     @GetMapping(value = "/hello")
-    public ResponseResult getRibbon(){
+    public ResponseResult getRibbon() {
         log.info("我被调用了");
         List<ServiceInstance> instances = discoveryClient.getInstances("content-center");
         int length = instances.size();
         Random random = new Random();
         int i = random.nextInt(length);
-        String targetUrl = instances.get(i).getUri().toString()+"/notice/list";
+        String targetUrl = instances.get(i).getUri().toString() + "/notice/list";
 
 //        String targetUrl = instances.stream()
 //                .map( instance -> instance.getUri().toString() + "/hello")
 //                .findFirst()
 //                .orElseThrow(() -> new IllegalArgumentException("当前没有实例!"));
-        log.info("请求的目标地址,{}",targetUrl);
-        return restTemplate.getForObject(targetUrl,ResponseResult.class);
+        log.info("请求的目标地址,{}", targetUrl);
+        return restTemplate.getForObject(targetUrl, ResponseResult.class);
     }
 }

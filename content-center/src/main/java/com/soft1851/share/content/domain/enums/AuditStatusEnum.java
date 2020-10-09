@@ -11,7 +11,7 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor
-public enum  AuditStatusEnum {
+public enum AuditStatusEnum {
     /**
      * 待审核
      */

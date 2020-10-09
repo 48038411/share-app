@@ -35,36 +35,44 @@ public class TestController {
     private TestUserCenterFeignClient testUserCenterFeignClient;
     @Autowired
     private TestBaiduFeignClient testBaiduFeignClient;
+
     @GetMapping("/discovery")
-    public List<ServiceInstance> get(){
+    public List<ServiceInstance> get() {
         return discoveryClient.getInstances("user-center");
     }
+
     @GetMapping("/hello")
-    public String hello(){
+    public String hello() {
         return "This is content_hello";
     }
+
     @GetMapping(value = "/test-q")
-    public UserDTO query(UserDTO userDTO){
+    public UserDTO query(UserDTO userDTO) {
         return testUserCenterFeignClient.query(userDTO);
     }
+
     @GetMapping(value = "/baidu")
-    public String index(){
+    public String index() {
         return testBaiduFeignClient.index();
     }
+
     @GetMapping(value = "/call/ribbon/{id}")
     public String getRibbon(@PathVariable Integer id) {
-        return restTemplate.getForObject("http://user-center/users/{id}", String.class,id);
+        return restTemplate.getForObject("http://user-center/users/{id}", String.class, id);
     }
+
     @GetMapping(value = "/users/{id}")
-    public ListenableFuture<ResponseEntity<String>> getUser(@PathVariable Integer id){
-        return asyncRestTemplate.getForEntity("http://user-center/users/{id}", String.class,id);
+    public ListenableFuture<ResponseEntity<String>> getUser(@PathVariable Integer id) {
+        return asyncRestTemplate.getForEntity("http://user-center/users/{id}", String.class, id);
     }
+
     @GetMapping("byResources")
-    @SentinelResource(value = "hello",blockHandler = "handleException")
-    public String byResources(){
+    @SentinelResource(value = "hello", blockHandler = "handleException")
+    public String byResources() {
         return "按名称限流";
     }
-    public String handleException(BlockException blockException){
+
+    public String handleException(BlockException blockException) {
         return "服务不可用";
     }
 }

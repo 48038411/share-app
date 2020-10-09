@@ -24,16 +24,18 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping(value = "/q")
-    public UserDTO query(UserDTO user){
+    public UserDTO query(UserDTO user) {
         return user;
     }
+
     @GetMapping(value = "/{id}")
     public User findUserById(@PathVariable Integer id) {
         log.info("我被请求了...");
         return this.userService.findById(id);
     }
+
     @PostMapping(value = "/bonus")
-    public User updateBonus(@RequestBody UserAddBonusMsgDTO userAddBonusMsgDTO){
+    public User updateBonus(@RequestBody UserAddBonusMsgDTO userAddBonusMsgDTO) {
         return userService.updateBonus(userAddBonusMsgDTO);
     }
 }

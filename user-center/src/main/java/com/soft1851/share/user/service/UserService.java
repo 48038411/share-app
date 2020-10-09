@@ -12,8 +12,10 @@ import java.util.List;
  */
 public interface UserService {
     ResponseResult getUserInfo(Integer id);
+
     /**
      * 根据id获得用户详情
+     *
      * @param id
      * @return User
      */
@@ -21,6 +23,7 @@ public interface UserService {
 
     /**
      * 用户修改积分接口
+     *
      * @param addBonusMsgDTO
      * @return
      */

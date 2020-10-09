@@ -17,14 +17,15 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping(value = "admin/shares")
-@Api(tags = "审核接口",value = "提供审核的 API")
+@Api(tags = "审核接口", value = "提供审核的 API")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ShareAdminController {
     private final ShareService shareService;
+
     @PutMapping("/audit/{id}")
-    @ApiOperation(value = "审核接口",notes = "审核接口")
-    public Share audit(@PathVariable Integer id, @RequestBody ShareAuditDTO shareAuditDTO){
-        return shareService.auditById(id,shareAuditDTO);
+    @ApiOperation(value = "审核接口", notes = "审核接口")
+    public Share audit(@PathVariable Integer id, @RequestBody ShareAuditDTO shareAuditDTO) {
+        return shareService.auditById(id, shareAuditDTO);
     }
 
 }

@@ -6,12 +6,10 @@
   padding: 20rpx;
 }
 
-
 .description{
   font-size: 30rpx;
   font-weight: 550;
 }
-
 
 .label-list{
   display: flex;
@@ -21,7 +19,6 @@
   width: 100%;
   font-size: 35rpx;
 }
-
 
 .label{
   display: flex;
@@ -36,13 +33,11 @@
   width: 70%;
 }
 
-
 .btn{
   background-color: #FF4444;
   color: #fff;
   margin-top: 20rpx;
 }
-
 
 .is-original-item{
   display: flex;

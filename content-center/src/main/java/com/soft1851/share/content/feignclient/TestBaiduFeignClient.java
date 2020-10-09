@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 /**
  * @author Guorc
  */
-@FeignClient(name = "baidu",url = "https://www.baidu.com")
+@FeignClient(name = "baidu", url = "https://www.baidu.com")
 public interface TestBaiduFeignClient {
     @GetMapping("")
     String index();

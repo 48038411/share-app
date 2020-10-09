@@ -4,5 +4,6 @@
       "name": "spring.cloud.nacos.discovery.server-addr",
       "type": "java.lang.String",
       "description": "Description for spring.cloud.nacos.discovery.server-addr."
-  }
-] }
+    }
+  ]
+}

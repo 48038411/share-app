@@ -1,4 +1,6 @@
 <!--pages/duihuanSuccess/duihuanSuccess.wxml-->
 <view class="container">
-  <text>兑换成功{{share.id}}</text>
+<text>{{share.title}}</text>
+<button class="btn">复制下载地址</button>
 </view>
+

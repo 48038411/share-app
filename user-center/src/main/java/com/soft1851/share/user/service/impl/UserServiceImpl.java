@@ -31,19 +31,19 @@ public class UserServiceImpl implements UserService {
     @Override
     public ResponseResult getUserInfo(Integer id) {
         User user = userMapper.selectByPrimaryKey(id);
-        return new ResponseResult(200,"查询成功",user);
+        return new ResponseResult(200, "查询成功", user);
     }
 
-        @Override
-        public User findById(Integer id) {
-            return this.userMapper.selectByPrimaryKey(id);
+    @Override
+    public User findById(Integer id) {
+        return this.userMapper.selectByPrimaryKey(id);
 
     }
 
     @Override
     public User updateBonus(UserAddBonusMsgDTO addBonusMsgDTO) {
         User user = this.userMapper.selectByPrimaryKey(addBonusMsgDTO.getUserId());
-        user.setBonus(user.getBonus()+addBonusMsgDTO.getBonus());
+        user.setBonus(user.getBonus() + addBonusMsgDTO.getBonus());
         this.userMapper.updateByPrimaryKeySelective(user);
         //写积分日志
         this.bonusEventLogMapper.insert(BonusEventLog.builder()

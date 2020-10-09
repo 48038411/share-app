@@ -26,7 +26,7 @@ public class NoticeServiceImpl implements NoticeService {
         //按id降序
         example.setOrderByClause("id DESC");
         Example.Criteria criteria = example.createCriteria();
-        criteria.andEqualTo("showFlag",1);
+        criteria.andEqualTo("showFlag", 1);
         return noticeMapper.selectByExample(example).get(0);
     }
 }

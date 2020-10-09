@@ -27,11 +27,13 @@ public class ContentCenterApplication {
     public static void main(String[] args) {
         SpringApplication.run(ContentCenterApplication.class, args);
     }
+
     @Bean
     @LoadBalanced
-    public RestTemplate restTemplate(){
+    public RestTemplate restTemplate() {
         return new RestTemplate();
     }
+
     @Bean
     @LoadBalanced
     public AsyncRestTemplate asyncRestTemplate() {

@@ -13,9 +13,9 @@ spring:
     nacos:
       discovery:
         server-addr: 47.115.60.46:8848
-#    sentinel:
-#      transport:
-#        dashboard: localhost:8080
+  #    sentinel:
+  #      transport:
+  #        dashboard: localhost:8080
   main:
     allow-bean-definition-overriding: true
 #        namespace: 5a7fca12-1710-4fe9-8ce9-68329156cfdd
@@ -37,7 +37,7 @@ ribbon:
     clients: user-center
 logging:
   level:
-#    一定是debug才能打印
+    #    一定是debug才能打印
     com.soft1851.share.content.feignclient.UserCenterFeignClient: debug
 
 feign:

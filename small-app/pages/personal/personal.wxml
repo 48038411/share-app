@@ -1,6 +1,6 @@
 <!--pages/personal/personal.wxml-->
 <view class="no-user" wx:if="{{userInfo === null}}">
-<image src="../../image/yonghu.png"></image>
+<image src="../../images/yonghu.png"></image>
 <view>登录,享受技术之旅吧!</view>
 <button class="btn" bindtap="weixinLogin">微信登录</button>
 </view>

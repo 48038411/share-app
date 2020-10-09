@@ -5,6 +5,7 @@
   justify-content: flex-start;
   padding: 10rpx;
 }
+
 .tab{
   position: sticky;
   top: 0;
@@ -18,7 +19,6 @@
   z-index: 1000;
 }
 
-
 .tab-item{
   width: 30%;
   padding: 10rpx;
@@ -27,14 +27,12 @@
   align-items: center;
 }
 
-
 .tab-item.active{
   color: #000;
   font-weight: 530;
   border-bottom: 5rpx solid;
   border-bottom-color: #FF4444;
 }
-
 
 .share-item{
   display: flex;
@@ -46,15 +44,12 @@
   border-bottom: 1rpx  dashed gray;
 }
 
-
 .share-item image{
   flex: 0 0 18%;
   width: 140rpx;
   height: 140rpx;
   border-radius: 50%;
 }
-
-
 
 
 .origin-label{
@@ -67,16 +62,13 @@
   padding: 5rpx;
 }
 
-
 .origin-label.one{
   background-color: #FF4444;
 }
 
-
 .origin-label.two{
   background-color: rgb(132, 189, 0);
 }
-
 
 .item-main{
   flex: 0 0 60%;
@@ -85,18 +77,15 @@
   padding: 20rpx;
 }
 
-
 .item-title{
   font-weight: 650;
   font-size: 30rpx;
 }
 
-
 .item-summary{
   font-weight: 500;
   font-size: 30rpx;
 }
-
 
 .item-duihuan{
   /* flex: 0 0 10%; */
@@ -105,12 +94,10 @@
   font-size: 30rpx;
 }
 
-
 .dicription{
   font-size: 32rpx;
   padding: 20rpx;
 }
-
 
 .dicription-title{
   font-weight: 600;
