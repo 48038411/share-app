@@ -1,4 +1,6 @@
 // pages/index/index.js
+const app = getApp();
+const API = require('../../utils/request.js')
 Page({
 
     /**
@@ -13,20 +15,16 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        var that = this
-        wx.request({
-            url: 'http://47.115.60.46:8082/shares/query',
-            data: {
-                pageNo: 1,
-                pageSize: 10
-            },
-            success: function (res) {
-                that.setData({
-                    shareList: res.data.data
-                })
-                console.log(that.data.shareList);
-
-            }
+        API.getList(
+        ).then(res =>{
+            const request = JSON.parse(res)
+      // console.log(app.globalData.userInfo);
+      
+      app.globalData.user = request.user
+      app.globalData.token = request.token['token'] 
+      this.setData({
+        shareList:res.data.data
+      })
         })
     },
 

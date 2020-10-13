@@ -7,7 +7,10 @@ bindtap="changeTab">发现</view>
 bindtap="changeTab">使用说明</view>
 </view>
 <!-- tab1 发现页 -->
+<input type="text" placeholder="请输入搜索内容"/>
 <view class="share-list" wx:if="{{tab == 0}}">
+<view>
+</view>
 <view wx:for="{{shareList}}" wx:for-item="share" class="share-item">
 <view wx:if="{{share.isOriginal==0}}" class="origin-label {{share.isOriginal == 0 ? 'one':'two'}}">原创</view>
 <view wx:else class="origin-label {{share.isOriginal==0? 'one':'two'}}">转载</view>
