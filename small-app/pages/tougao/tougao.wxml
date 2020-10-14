@@ -25,19 +25,19 @@
     </view>
     <view class="label">
       <text>作者</text>
-      <input placeholder="请输入作者" />
+      <input name="author" placeholder="请输入作者" />
     </view>
     <view class="label">
       <text>价格</text>
-      <input placeholder="请输入价格" />
+      <input name="price" placeholder="请输入价格" />
     </view>
     <view class="label">
       <text>简介</text>
-      <input placeholder="介绍下技术干货吧" />
+      <input name="summary" placeholder="介绍下技术干货吧" />
     </view>
     <view class="label">
       <text>下载地址</text>
-      <input placeholder="请输入下载地址" />
+      <input name="downloadUrl" placeholder="请输入下载地址" />
     </view>
   </view>
   <button class="btn" form-type="submit">提交</button>

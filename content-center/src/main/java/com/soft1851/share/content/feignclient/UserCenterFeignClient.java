@@ -1,6 +1,7 @@
 package com.soft1851.share.content.feignclient;
 
 import com.soft1851.share.content.configuration.UserCenterFeignConfiguration;
+import com.soft1851.share.content.domain.dto.ResponseDTO;
 import com.soft1851.share.content.domain.dto.UserAddBonusMsgDTO;
 import com.soft1851.share.content.domain.dto.UserDTO;
 import com.soft1851.share.content.domain.entity.User;
@@ -22,7 +23,7 @@ public interface UserCenterFeignClient {
      * @return UserDTO
      */
     @GetMapping("/users/{id}")
-    UserDTO findUserById(@PathVariable Integer id);
+    ResponseDTO findUserById(@PathVariable Integer id);
 
 
     /**

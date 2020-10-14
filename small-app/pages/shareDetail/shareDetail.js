@@ -78,11 +78,10 @@ Page({
             userId: this.data.userId,
             shareId: share.id
         }).then(res => {
-            console.log(res);
+            wx.navigateTo({
+                url: '../duihuanSuccess/duihuanSuccess?share=' + JSON.stringify(share),
+            })  
             
         })
-        // wx.navigateTo({
-        //     url: '../duihuanSuccess/duihuanSuccess?share=' + JSON.stringify(share),
-        // })
     },
 })

@@ -4,6 +4,7 @@ import com.soft1851.share.user.common.ResponseResult;
 import com.soft1851.share.user.dao.BonusEventLogMapper;
 import com.soft1851.share.user.dao.UserMapper;
 import com.soft1851.share.user.domain.dto.LoginDTO;
+import com.soft1851.share.user.domain.dto.ResponseDTO;
 import com.soft1851.share.user.domain.dto.UserAddBonusMsgDTO;
 import com.soft1851.share.user.domain.entity.BonusEventLog;
 import com.soft1851.share.user.domain.entity.User;
@@ -35,8 +36,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findById(Integer id) {
-        return this.userMapper.selectByPrimaryKey(id);
+    public ResponseDTO findById(Integer id) {
+//        return this.userMapper.selectByPrimaryKey(id);
+        User user = this.userMapper.selectByPrimaryKey(id);
+        return new ResponseDTO(true,"200","查询成功",user,1l);
 
     }
 

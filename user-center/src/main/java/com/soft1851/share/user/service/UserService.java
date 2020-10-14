@@ -2,6 +2,7 @@ package com.soft1851.share.user.service;
 
 import com.soft1851.share.user.common.ResponseResult;
 import com.soft1851.share.user.domain.dto.LoginDTO;
+import com.soft1851.share.user.domain.dto.ResponseDTO;
 import com.soft1851.share.user.domain.dto.UserAddBonusMsgDTO;
 import com.soft1851.share.user.domain.dto.UserDTO;
 import com.soft1851.share.user.domain.entity.User;
@@ -20,7 +21,7 @@ public interface UserService {
      * @param id
      * @return User
      */
-    User findById(Integer id);
+    ResponseDTO findById(Integer id);
 
     /**
      * 用户修改积分接口

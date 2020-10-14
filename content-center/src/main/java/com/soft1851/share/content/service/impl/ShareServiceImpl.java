@@ -1,5 +1,7 @@
 package com.soft1851.share.content.service.impl;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.soft1851.share.content.dao.MidUserShareMapper;
@@ -53,7 +55,8 @@ public class ShareServiceImpl implements ShareService {
         // 2. 复杂的url难以维护：https://user-center/s?ie={ie}&f={f}&rsv_bp=1&rsv_idx=1&tn=baidu&wd=a&rsv_pq=c86459bd002cfbaa&rsv_t=edb19hb%2BvO%2BTySu8dtmbl%2F9dCK%2FIgdyUX%2BxuFYuE0G08aHH5FkeP3n3BXxw&rqlang=cn&rsv_enter=1&rsv_sug3=1&rsv_sug2=0&inputT=611&rsv_sug4=611
         // 3. 难以相应需求的变化，变化很没有幸福感
         // 4. 编程体验不统一
-        UserDTO userDTO = this.userCenterFeignClient.findUserById(userId);
+        ResponseDTO responseDTO = this.userCenterFeignClient.findUserById(userId);
+        UserDTO userDTO = convert(responseDTO);
 
         ShareDTO shareDTO = new ShareDTO();
 //        shareDTO.setShare(share);
@@ -75,6 +78,7 @@ public class ShareServiceImpl implements ShareService {
                 .downloadUrl(shareRequestDTO.getDownloadUrl())
                 .auditStatus("NOT_YET")
                 .buyCount(0)
+                .cover("")
                 .createTime(new Date())
                 .updateTime(new Date())
                 .showFlag(false)
@@ -227,7 +231,9 @@ public class ShareServiceImpl implements ShareService {
         }
 
          //3. 根据当前登录的用户id，查询积分是否够
-        UserDTO userDTO = this.userCenterFeignClient.findUserById(userId);
+        ResponseDTO responseDTO = this.userCenterFeignClient.findUserById(userId);
+        UserDTO userDTO = convert(responseDTO);
+        System.out.println(userDTO);
         if (price > userDTO.getBonus()) {
             throw new IllegalArgumentException("用户积分不够！");
         }
@@ -250,4 +256,21 @@ public class ShareServiceImpl implements ShareService {
         );
         return share;
         }
+    /**
+     * 将统一的返回响应结果转换为UserDTO类型
+     * @param responseDTO
+     * @return
+     */
+    private UserDTO convert(ResponseDTO responseDTO) {
+        ObjectMapper mapper = new ObjectMapper();
+        UserDTO userDTO = null;
+        try {
+            String json = mapper.writeValueAsString(responseDTO.getData());
+            userDTO = mapper.readValue(json, UserDTO.class);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return userDTO;
+    }
+
 }

@@ -95,5 +95,8 @@ module.exports ={
   },
   duihuan:(data) => {
     return post('/shares/exchange',data,'json') //兑换
+  },
+  contribute:(data) => {
+    return post('/shares/contribute',data,'json') //投稿
   }
 }

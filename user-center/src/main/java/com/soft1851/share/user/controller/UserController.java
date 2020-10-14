@@ -88,7 +88,7 @@ public class UserController {
 //    }
 
     @GetMapping(value = "/{id}")
-    public User findUserById(@PathVariable Integer id) {
+    public ResponseDTO findUserById(@PathVariable Integer id) {
         log.info("我被请求了...");
         return this.userService.findById(id);
     }

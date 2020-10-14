@@ -1,11 +1,12 @@
 // pages/tougao/tougao.js
+var API = require("../../utils/request.js")
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        shareDto: {}
+        isOriginal: ''
     },
 
     /**
@@ -65,14 +66,37 @@ Page({
     },
     radioChange(e) {
         var that = this
-        that.setData({
-            isOriginal: e.detail.value
-        })
+        
+        // that.setData({
+        //     isOriginal: e.detail.value
+        // })
+        if(e.detail.value == 1){
+            that.setData({
+                isOriginal: false
+            })
+        }else{
+            that.setData({
+                isOriginal: true
+            })
+        }
         console.log('radio发生change事件，携带value值为：', e.detail.value);
     },
     formSubmit: function (e) {
         console.log(e);
-        console.log(shareDto.isOriginal1);
-
+        
+        console.log(this.data.isOriginal);
+        API.contribute({
+            userId: wx.getStorageSync('user').id,
+            title: e.detail.value.title,
+            isOriginal: this.data.isOriginal,
+            author: e.detail.value.author,
+            summary: e.detail.value.summary,
+            price: e.detail.value.price,
+            downloadUrl: e.detail.value.downloadUrl
+        }).then(res => {
+            console.log(res);
+            
+        })
+        
     }
 })
