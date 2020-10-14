@@ -5,7 +5,6 @@ import com.soft1851.share.user.dao.BonusEventLogMapper;
 import com.soft1851.share.user.dao.UserMapper;
 import com.soft1851.share.user.domain.dto.LoginDTO;
 import com.soft1851.share.user.domain.dto.UserAddBonusMsgDTO;
-import com.soft1851.share.user.domain.dto.UserDTO;
 import com.soft1851.share.user.domain.entity.BonusEventLog;
 import com.soft1851.share.user.domain.entity.User;
 import com.soft1851.share.user.service.UserService;
@@ -15,9 +14,7 @@ import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 描述:
@@ -83,5 +80,24 @@ public class UserServiceImpl implements UserService {
         }
         return users.get(0);
 
+    }
+
+    @Override
+    public User reduceBonus(UserAddBonusMsgDTO userAddBonusMsgDTO) {
+        User user = this.userMapper.selectByPrimaryKey(userAddBonusMsgDTO.getUserId());
+        System.out.println(userAddBonusMsgDTO.getBonus());
+        user.setBonus(user.getBonus() + userAddBonusMsgDTO.getBonus());
+        System.out.println(user.getBonus());
+        this.userMapper.updateByPrimaryKeySelective(user);
+        //写积分日志
+        this.bonusEventLogMapper.insert(BonusEventLog.builder()
+                .userId(userAddBonusMsgDTO.getUserId())
+                .value(userAddBonusMsgDTO.getBonus())
+                .event("CONTRIBUTE")
+                .createTime(new Date())
+                .description("兑换扣积分")
+                .build()
+        );
+        return user;
     }
 }

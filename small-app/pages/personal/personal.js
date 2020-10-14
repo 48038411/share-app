@@ -100,6 +100,9 @@ Page({
               
               app.globalData.user = request.user
               app.globalData.token = request.token['token'] 
+              
+              wx.setStorageSync('user', app.globalData.user)
+              wx.setStorageSync('token', app.globalData.token)
               that.setData({
                 userInfo:app.globalData.user
               })

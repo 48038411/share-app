@@ -36,4 +36,11 @@ public interface UserService {
      * @return
      */
     User login(LoginDTO loginDTO,String openId);
+
+    /**
+     * 扣积分
+     * @param userAddBonusMsgDTO
+     * @return
+     */
+    User reduceBonus(UserAddBonusMsgDTO userAddBonusMsgDTO);
 }

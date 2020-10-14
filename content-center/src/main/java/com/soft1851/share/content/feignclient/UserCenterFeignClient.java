@@ -24,13 +24,6 @@ public interface UserCenterFeignClient {
     @GetMapping("/users/{id}")
     UserDTO findUserById(@PathVariable Integer id);
 
-    /**
-     * hello测试
-     *
-     * @return String
-     */
-    @GetMapping("/user/hello")
-    String getHello();
 
     /**
      * 修改积分日志
@@ -40,4 +33,12 @@ public interface UserCenterFeignClient {
      */
     @PostMapping("/users/bonus")
     User updateBonus(@RequestBody UserAddBonusMsgDTO userAddBonusMsgDTO);
+
+    /**
+     * 兑换扣积分
+     * @param userAddBonusMsgDTO
+     * @return
+     */
+    @PostMapping("/users/reduceBonus")
+    User reduceBonus(@RequestBody UserAddBonusMsgDTO userAddBonusMsgDTO);
 }

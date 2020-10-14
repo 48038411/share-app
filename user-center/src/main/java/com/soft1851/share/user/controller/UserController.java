@@ -97,4 +97,8 @@ public class UserController {
     public User updateBonus(@RequestBody UserAddBonusMsgDTO userAddBonusMsgDTO) {
         return userService.updateBonus(userAddBonusMsgDTO);
     }
+    @PostMapping(value = "/reduceBonus")
+    public User reduceBonus(@RequestBody UserAddBonusMsgDTO userAddBonusMsgDTO){
+        return userService.reduceBonus(userAddBonusMsgDTO);
+    }
 }

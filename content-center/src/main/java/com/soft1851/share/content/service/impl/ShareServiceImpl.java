@@ -226,21 +226,21 @@ public class ShareServiceImpl implements ShareService {
             return share;
         }
 
-        // 3. 根据当前登录的用户id，查询积分是否够
-        //UserDTO userDTO = this.userCenterFeignClient.findUserById(userId);
-        //System.out.println("用户积分：" + userDTO.getBonus());
-        //if (price > userDTO.getBonus()) {
-        //    throw new IllegalArgumentException("用户积分不够！");
-        //}
+         //3. 根据当前登录的用户id，查询积分是否够
+        UserDTO userDTO = this.userCenterFeignClient.findUserById(userId);
+        if (price > userDTO.getBonus()) {
+            throw new IllegalArgumentException("用户积分不够！");
+        }
 
 
-        // 4. 扣积分
-        //this.userCenterFeignClient.addBonus(
-        //        UserAddBonusDTO.builder()
-        //                .userId(userId)
-        //                .bonus(price * -1)
-        //                .build()
-        //);
+
+         //4. 扣积分
+        this.userCenterFeignClient.reduceBonus(
+                UserAddBonusMsgDTO.builder()
+                        .userId(userId)
+                        .bonus(price * -1)
+                        .build()
+        );
         //5. 向mid_user_share表里插入一条数据
         this.midUserShareMapper.insert(
                 MidUserShare.builder()

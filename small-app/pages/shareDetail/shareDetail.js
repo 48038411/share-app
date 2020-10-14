@@ -1,17 +1,19 @@
 // pages/shareDetail/shareDetail.js
+const app = getApp();
+const API = require('../../utils/request.js')
 Page({
-
     /**
      * 页面的初始数据
      */
     data: {
-        share: null
+        share: null,
+        userId: wx.getStorageSync('user').id
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function (options) {
+    onLoad: function (options) {        
         this.setData({
             share: JSON.parse(options.share)
         })
@@ -72,8 +74,15 @@ Page({
         //取出绑定对象
         console.log(e)
         var share = e.currentTarget.dataset.item
-        wx.navigateTo({
-            url: '../duihuanSuccess/duihuanSuccess?share=' + JSON.stringify(share),
+        API.duihuan({
+            userId: this.data.userId,
+            shareId: share.id
+        }).then(res => {
+            console.log(res);
+            
         })
+        // wx.navigateTo({
+        //     url: '../duihuanSuccess/duihuanSuccess?share=' + JSON.stringify(share),
+        // })
     },
 })

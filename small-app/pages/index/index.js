@@ -82,9 +82,15 @@ Page({
         //取出绑定对象
         console.log(e);
         var share = e.currentTarget.dataset.item
-        wx.navigateTo({
-            url: '../duihuanSuccess/duihuanSuccess?share=' + JSON.stringify(share),
-        })
+        if (share.downloadUrl == null) {
+            wx.navigateTo({
+                url: '../shareDetail/shareDetail?share=' + JSON.stringify(share),
+            })
+        } else {
+            wx.navigateTo({
+                url: '../duihuanSuccess/duihuanSuccess?share=' + JSON.stringify(share),
+            })
+        }
     },
     // 兑换
     goDetail(e) {

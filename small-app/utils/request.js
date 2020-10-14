@@ -1,5 +1,5 @@
 //统一接口封装
-const API_BASE_URL = 'http://guorc.utools.club';
+const API_BASE_URL = 'http://guoruichang.utools.club';
 const app = getApp()
 
 const get = (url, data) => { 
@@ -33,9 +33,10 @@ const get = (url, data) => {
       var headerObj = {'content-type' : 'application/x-www-form-urlencoded'};
     break;
     case "json" : 
-      var headerObj = {'content-type' : 'application/json'};
-      var token = {'X-Token':app.globalData.token};
-      console.log(app.globalData.token);
+      var headerObj = {
+        'X-Token': app.globalData.token,
+        'content-type' : 'application/json'};
+      // console.log(app.globalData.token);
     break;
     default :
       var headerObj = {'content-type' : 'application/json'};
@@ -46,8 +47,8 @@ const get = (url, data) => {
       data     : data,
       method   : "POST",
       dataType : JSON,
-      header: headerObj,token,
-      success(request) {
+      header: headerObj,
+      success(request) {  
         resolve(request.data)
       },
       fail(error) {
@@ -91,5 +92,8 @@ module.exports ={
   },
   getList:(data) => {
     return get('/shares/query',data)  //获取数据
+  },
+  duihuan:(data) => {
+    return post('/shares/exchange',data,'json') //兑换
   }
 }
