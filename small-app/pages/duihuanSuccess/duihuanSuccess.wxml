@@ -1,6 +1,6 @@
 <!--pages/duihuanSuccess/duihuanSuccess.wxml-->
 <view class="container">
 <text>{{share.title}}</text>
-<button class="btn">复制下载地址</button>
+<button class="btn" bindtap="clip">复制下载地址</button>
 </view>
 

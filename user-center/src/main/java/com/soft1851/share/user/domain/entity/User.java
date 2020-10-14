@@ -12,34 +12,39 @@ import javax.persistence.Table;
 import java.util.Date;
 
 /**
- * 描述:
- *
- * @author：Guorc
- * @create 2020-09-24 22:18
+ * @Author yhChen
+ * @Description
+ * @Date 2020/9/25
  */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "user")
 public class User {
+
     @Id
     @GeneratedValue(generator = "JDBC")
     private Integer id;
-    @Column(name = "account")
-    private String account;
-    @Column(name = "password")
-    private String password;
-    @Column(name = "nickname")
-    private String nickname;
+
+    @Column(name = "wx_id")
+    private String wxId;
+
+    @Column(name = "wx_nickname")
+    private String wxNickname;
+
     @Column(name = "roles")
     private String roles;
+
     @Column(name = "avatar_url")
     private String avatarUrl;
-    @Column(name = "update_time")
-    private Date updateTime;
-    @Column(name = "bonus")
-    private Integer bonus;
+
     @Column(name = "create_time")
     private Date createTime;
+
+    @Column(name = "update_time")
+    private Date updateTime;
+
+    @Column(name = "bonus")
+    private Integer bonus;
 }

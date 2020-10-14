@@ -14,7 +14,7 @@ Page({
     onLoad: function (options) {
         this.setData({
             share: JSON.parse(options.share)
-        })
+        })        
     },
 
     /**
@@ -64,5 +64,18 @@ Page({
      */
     onShareAppMessage: function () {
 
+    },
+    clip(){          
+         wx.setClipboardData({
+            data: this.data.share.downloadUrl,
+            success (res) {
+                console.log(1);
+              wx.getClipboardData({
+                success (res) {
+                  console.log(res.data) // data
+                }
+              })
+            }
+          })
     }
 })

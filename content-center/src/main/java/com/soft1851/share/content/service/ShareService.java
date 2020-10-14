@@ -1,6 +1,7 @@
 package com.soft1851.share.content.service;
 
 import com.github.pagehelper.PageInfo;
+import com.soft1851.share.content.domain.dto.ExchangeDTO;
 import com.soft1851.share.content.domain.dto.ShareAuditDTO;
 import com.soft1851.share.content.domain.dto.ShareDTO;
 import com.soft1851.share.content.domain.dto.ShareRequestDTO;
@@ -25,8 +26,6 @@ public interface ShareService {
      */
     int insert(ShareRequestDTO shareRequestDTO);
 
-    String getHello();
-
     /**
      * 根据标题模糊查询某个用户的分享列表数据，title为空则为所有数据，查询结果分页
      *
@@ -46,4 +45,12 @@ public interface ShareService {
      * @return
      */
     Share auditById(Integer id, ShareAuditDTO shareAuditDTO);
+
+    /**
+     * 积分兑换资源
+     *
+     * @param exchangeDTO
+     * @return Share
+     */
+    Share exchange(ExchangeDTO exchangeDTO);
 }

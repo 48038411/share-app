@@ -1,4 +1,3 @@
-  
 <!--pages/personal/personal.wxml-->
 <view class="container">
 
@@ -6,8 +5,7 @@
 <view class="no-user" wx:if="{{userInfo === null}}">
 <image src="../../image/yonghu.png"></image>
 <view>登录,享受技术之旅吧!</view>
-<button open-type="getUserInfo" bindgetuserinfo="getUserInfo">授权</button>
-<button class="btn" bindtap="weixinLogin">微信登录</button>
+<button class="btn" open-type="getUserInfo" bindtap="weixinLogin" bindgetuserinfo="bindgetuserinfo">微信登录</button>
 </view>
 
 <!-- 已登录 -->

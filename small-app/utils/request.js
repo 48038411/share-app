@@ -90,6 +90,6 @@ module.exports ={
     return post('/users/login',data,'json') //微信登录
   },
   getList:(data) => {
-    return get('/shares/query',data)
+    return get('/shares/query',data)  //获取数据
   }
 }

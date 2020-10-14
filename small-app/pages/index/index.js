@@ -15,17 +15,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        API.getList(
-        ).then(res =>{
-            const request = JSON.parse(res)
-      // console.log(app.globalData.userInfo);
-      
-      app.globalData.user = request.user
-      app.globalData.token = request.token['token'] 
-      this.setData({
-        shareList:res.data.data
-      })
-        })
+
     },
 
     /**
@@ -40,6 +30,12 @@ Page({
      */
     onShow: function () {
 
+        var that = this
+        API.getList().then(res => {
+            that.setData({
+                shareList: res.data
+            })
+        })
     },
 
     /**

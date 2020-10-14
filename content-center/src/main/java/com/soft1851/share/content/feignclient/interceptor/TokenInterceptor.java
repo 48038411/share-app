@@ -1,4 +1,4 @@
-package com.soft1851.share.content.feignclient;
+package com.soft1851.share.content.feignclient.interceptor;
 
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
@@ -8,7 +8,6 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * 描述:

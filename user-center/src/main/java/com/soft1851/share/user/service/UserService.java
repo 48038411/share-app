@@ -1,6 +1,7 @@
 package com.soft1851.share.user.service;
 
 import com.soft1851.share.user.common.ResponseResult;
+import com.soft1851.share.user.domain.dto.LoginDTO;
 import com.soft1851.share.user.domain.dto.UserAddBonusMsgDTO;
 import com.soft1851.share.user.domain.dto.UserDTO;
 import com.soft1851.share.user.domain.entity.User;
@@ -28,4 +29,11 @@ public interface UserService {
      * @return
      */
     User updateBonus(UserAddBonusMsgDTO addBonusMsgDTO);
+
+    /**
+     * 登陆接口
+     * @param loginDTO
+     * @return
+     */
+    User login(LoginDTO loginDTO,String openId);
 }

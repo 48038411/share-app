@@ -7,7 +7,6 @@ import com.soft1851.share.content.dao.ShareMapper;
 import com.soft1851.share.content.domain.dto.*;
 import com.soft1851.share.content.domain.entity.MidUserShare;
 import com.soft1851.share.content.domain.entity.Share;
-import com.soft1851.share.content.domain.entity.User;
 import com.soft1851.share.content.domain.enums.AuditStatusEnum;
 import com.soft1851.share.content.feignclient.UserCenterFeignClient;
 import com.soft1851.share.content.service.ShareService;
@@ -16,14 +15,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.springframework.util.concurrent.ListenableFuture;
-import org.springframework.util.concurrent.ListenableFutureCallback;
 import org.springframework.web.client.AsyncRestTemplate;
 import tk.mybatis.mapper.entity.Example;
 import tk.mybatis.mapper.util.StringUtil;
@@ -89,10 +82,6 @@ public class ShareServiceImpl implements ShareService {
         return shareMapper.insert(share);
     }
 
-    @Override
-    public String getHello() {
-        return this.userCenterFeignClient.getHello();
-    }
 
     @Override
     public PageInfo<Share> query(String title, Integer pageNo, Integer pageSize, Integer userId) {
@@ -109,6 +98,7 @@ public class ShareServiceImpl implements ShareService {
         List<Share> shares = this.shareMapper.selectByExample(example);
         //处理后的Share数据列表
         List<Share> shareDeal;
+        System.out.println(userId);
         // 1.如果用户未登录，那么downloadUrl全部设为null
         if (userId == null) {
             shareDeal = shares.stream()
@@ -213,4 +203,51 @@ public class ShareServiceImpl implements ShareService {
         }
         return share;
     }
+
+    @Override
+    public Share exchange(ExchangeDTO exchangeDTO) {
+        int userId = exchangeDTO.getUserId();
+        int shareId = exchangeDTO.getShareId();
+        // 1. 根据id查询share，校验是否存在
+        Share share = this.shareMapper.selectByPrimaryKey(shareId);
+        if (share == null) {
+            throw new IllegalArgumentException("该分享不存在！");
+        }
+        Integer price = share.getPrice();
+
+        // 2. 如果当前用户已经兑换过该分享，则直接返回
+        MidUserShare midUserShare = this.midUserShareMapper.selectOne(
+                MidUserShare.builder()
+                        .shareId(shareId)
+                        .userId(userId)
+                        .build()
+        );
+        if (midUserShare != null) {
+            return share;
+        }
+
+        // 3. 根据当前登录的用户id，查询积分是否够
+        //UserDTO userDTO = this.userCenterFeignClient.findUserById(userId);
+        //System.out.println("用户积分：" + userDTO.getBonus());
+        //if (price > userDTO.getBonus()) {
+        //    throw new IllegalArgumentException("用户积分不够！");
+        //}
+
+
+        // 4. 扣积分
+        //this.userCenterFeignClient.addBonus(
+        //        UserAddBonusDTO.builder()
+        //                .userId(userId)
+        //                .bonus(price * -1)
+        //                .build()
+        //);
+        //5. 向mid_user_share表里插入一条数据
+        this.midUserShareMapper.insert(
+                MidUserShare.builder()
+                        .userId(userId)
+                        .shareId(shareId)
+                        .build()
+        );
+        return share;
+        }
 }

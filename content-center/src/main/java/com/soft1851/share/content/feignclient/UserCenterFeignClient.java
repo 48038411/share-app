@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
  * @author：Guorc
  * @create 2020-09-29 22:41
  */
-@FeignClient(name = "user-center")
+@FeignClient(name = "user-center",configuration = UserCenterFeignConfiguration.class)
 public interface UserCenterFeignClient {
     /**
      * http://user-center/users/{id}

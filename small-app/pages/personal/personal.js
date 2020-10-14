@@ -1,3 +1,5 @@
+// pages/personal/personal.js
+
 const app = getApp();
 const API = require('../../utils/request.js')
 
@@ -14,7 +16,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
   },
 
   /**
@@ -65,27 +67,63 @@ Page({
   onShareAppMessage: function () {
 
   },
-  getUserInfo(event) {
-    console.log(event.detail);
 
-},
+  // 点击授权成功之后的方法
+  bindgetuserinfo() {
+    var app = getApp()
+    var that = this;
+        wx.login({
+          success (res) {
+        wx.request({
+          url: 'https://api.weixin.qq.com/sns/jscode2session',
+          data:{
+            appid: 'wx05dcf498882dad7a',
+            secret: '17e0608a74fe35fdfe66bd5efb6fc8a2',
+            js_code: res.code,
+            grant_type: 'authorization_code'
+          },
+
+          success: res =>{
+              app.globalData.wxId = res.data.openid                
+
+          wx.getUserInfo({
+          success: function(res) {
+            console.log("昵称是:" + res.userInfo.nickName)
+            app.globalData.userInfo = res.userInfo
+            console.log(res.userInfo)
+            API.login({
+              wxId: app.globalData.wxId,
+              wxNickName: app.globalData.userInfo.nickName,
+              avatar: app.globalData.userInfo.avatarUrl
+            }).then( res =>{
+              const request = JSON.parse(res)
+              
+              app.globalData.user = request.user
+              app.globalData.token = request.token['token'] 
+              that.setData({
+                userInfo:app.globalData.user
+              })
+            })
+          
+          }
+        })
+          }
+        })
+       }
+    }) 
+  },
   /**
    * 登录，目前只是走个形式
    */
   weixinLogin(){
-    API.login({
-      wxId: app.globalData.wxId,
-      wxNickName: app.globalData.userInfo.nickName,
-      avatar: app.globalData.userInfo.avatarUrl
-    }).then( res =>{
-      const request = JSON.parse(res)
-      // console.log(app.globalData.userInfo);
-      
-      app.globalData.user = request.user
-      app.globalData.token = request.token['token'] 
-      this.setData({
-        userInfo:app.globalData.user
-      })
+    console.log("进入登录方法")
+    wx.getSetting({
+      success(res) {
+        if(res.authSetting['scope.userInfo']) {
+          console.log("微信授权")
+          
+        }
+      }
     })
   }
 })

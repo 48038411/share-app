@@ -13,11 +13,18 @@ spring:
 #          gatewayͨ也要去网关注册发现
           enabled: true
       routes:
-       - id: users-test
-         uri: lb://user-center/users/{id}
+       - id: path_route
+         uri: lb://user-center
          predicates:
-           - TimeBetween=上午11:00,下午5:00
-           - Path=/users/{id}
+           - Path=/users/**
+       - id: path_routew2
+         uri: lb://content-center
+         predicates:
+           - Path=/shares/**
+       - id: path_route3
+         uri: lb://content/center
+         predicates:
+           - Path=/notices/**
 #           - Cookie=username,guorc
 #           - Method=GET
 #           - Between=2020-10-09T11:32:12.975035+08:00[Asia/Shanghai],2021-06-07T16:32:12.975035+08:00[Asia/Shanghai]

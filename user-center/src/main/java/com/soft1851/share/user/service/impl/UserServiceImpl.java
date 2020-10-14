@@ -3,6 +3,7 @@ package com.soft1851.share.user.service.impl;
 import com.soft1851.share.user.common.ResponseResult;
 import com.soft1851.share.user.dao.BonusEventLogMapper;
 import com.soft1851.share.user.dao.UserMapper;
+import com.soft1851.share.user.domain.dto.LoginDTO;
 import com.soft1851.share.user.domain.dto.UserAddBonusMsgDTO;
 import com.soft1851.share.user.domain.dto.UserDTO;
 import com.soft1851.share.user.domain.entity.BonusEventLog;
@@ -11,9 +12,11 @@ import com.soft1851.share.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -55,5 +58,30 @@ public class UserServiceImpl implements UserService {
                 .build()
         );
         return user;
+    }
+
+    @Override
+    public User login(LoginDTO loginDTO,String openId) {
+        //先根据wxId查找用户
+        Example example = new Example(User.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("wxId",loginDTO.getWxId());
+        List<User> users = this.userMapper.selectByExample(example);
+        //没找到，是新用户，直接注册
+        if (users.size() == 0){
+            User saveUser = User.builder()
+                    .wxId(loginDTO.getWxId())
+                    .avatarUrl(loginDTO.getAvatar())
+                    .wxNickname(loginDTO.getWxNickName())
+                    .roles("user")
+                    .bonus(100)
+                    .createTime(new Date())
+                    .updateTime(new Date())
+                    .build();
+            this.userMapper.insertSelective(saveUser);
+            return saveUser;
+        }
+        return users.get(0);
+
     }
 }

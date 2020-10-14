@@ -1,6 +1,7 @@
-package com.soft1851.share.user.auth;
+package com.soft1851.share.content.auth;
 
-import com.soft1851.share.user.util.JwtOperator;
+
+import com.soft1851.share.content.util.JwtOperator;
 import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -29,7 +30,7 @@ import java.util.Objects;
 public class AuthAspect {
     private final JwtOperator jwtOperator;
 
-    @Around("@annotation(com.soft1851.share.user.auth.CheckLogin)")
+    @Around("@annotation(com.soft1851.share.content.auth.CheckLogin)")
     public Object checkLogin(ProceedingJoinPoint point) throws Throwable {
         checkToken();
         return point.proceed();
@@ -60,7 +61,7 @@ public class AuthAspect {
         return attributes.getRequest();
     }
 
-    @Around("@annotation(com.soft1851.usercenter.auth.CheckAuthorization)")
+    @Around("@annotation(com.soft1851.share.content.auth.CheckAuthorization)")
     public Object checkAuthorization(ProceedingJoinPoint point)throws Throwable{
         try {
             //1，验证token是否合法;
