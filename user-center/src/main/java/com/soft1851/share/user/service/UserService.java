@@ -1,10 +1,7 @@
 package com.soft1851.share.user.service;
 
 import com.soft1851.share.user.common.ResponseResult;
-import com.soft1851.share.user.domain.dto.LoginDTO;
-import com.soft1851.share.user.domain.dto.ResponseDTO;
-import com.soft1851.share.user.domain.dto.UserAddBonusMsgDTO;
-import com.soft1851.share.user.domain.dto.UserDTO;
+import com.soft1851.share.user.domain.dto.*;
 import com.soft1851.share.user.domain.entity.User;
 
 import java.util.List;
@@ -44,4 +41,18 @@ public interface UserService {
      * @return
      */
     User reduceBonus(UserAddBonusMsgDTO userAddBonusMsgDTO);
+
+    /**
+     * 用户签到
+     * @param signInDTO
+     * @return
+     */
+    ResponseDTO signIn(UserSignInDTO signInDTO);
+
+    /**
+     * 判断用户是否签到的
+     * @param signInDTO
+     * @return
+     */
+    ResponseDTO checkIsSign(UserSignInDTO signInDTO);
 }

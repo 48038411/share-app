@@ -14,12 +14,13 @@
 <image src="{{userInfo.avatarUrl}}"></image>
 <text>{{userInfo.wxNickName}}</text>
 <text>积分:{{userInfo.bonus}}</text>
-<view class="qiandao">签到</view>
+<view class="qiandao" bindtap="signIn" wx:if="{{isSignin === 0}}">签到</view>
+<view class="qiandao" bindtap="signIn" wx:else>已签到</view>
 </view>
 <view class="my-manage">
-<view class="manage-item">我的兑换</view>
-<view class="manage-item">积分明细</view>
-<view class="manage-item">我的投稿</view>
+<view class="manage-item" bindtap="myDuihuan">我的兑换</view>
+<view class="manage-item" bindtap="jifenLog">积分明细</view>
+<view class="manage-item" bindtap="myContribute">我的投稿</view>
 </view>
 </view>
 

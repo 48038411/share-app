@@ -13,7 +13,16 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        //判断用户是否登录
+        if (wx.getStorageSync('user')) {
+            wx.switchTab({
+                url: '../../pages/tougao/tougao'
+            })
+        } else {
+            wx.reLaunch({
+                url: '../personal/personal'
+            })
+        }
     },
 
     /**
@@ -67,23 +76,26 @@ Page({
     radioChange(e) {
         var that = this
         
-        // that.setData({
-        //     isOriginal: e.detail.value
-        // })
-        if(e.detail.value == 1){
-            that.setData({
-                isOriginal: false
-            })
-        }else{
-            that.setData({
-                isOriginal: true
-            })
-        }
+        that.setData({
+            isOriginal: e.detail.value
+        })
+        // if(e.detail.value == 1){
+        //     that.setData({
+        //         isOriginal: false
+        //     })
+        // }else{
+        //     that.setData({
+        //         isOriginal: true
+        //     })
+        // }
         console.log('radio发生change事件，携带value值为：', e.detail.value);
     },
     formSubmit: function (e) {
-        console.log(e);
-        
+        if(this.data.isOriginal == 1){
+            this.data.isOriginal = true
+        }else{
+            this.data.isOriginal = false
+        }
         console.log(this.data.isOriginal);
         API.contribute({
             userId: wx.getStorageSync('user').id,
@@ -94,8 +106,10 @@ Page({
             price: e.detail.value.price,
             downloadUrl: e.detail.value.downloadUrl
         }).then(res => {
-            console.log(res);
-            
+            wx.showToast({
+              title: '投稿成功', 
+              icon: 'success'
+            })
         })
         
     }

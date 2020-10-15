@@ -78,7 +78,7 @@ public class ShareServiceImpl implements ShareService {
                 .downloadUrl(shareRequestDTO.getDownloadUrl())
                 .auditStatus("NOT_YET")
                 .buyCount(0)
-                .cover("")
+                .cover("https://profile.csdnimg.cn/2/6/8/2_weixin_43250266")
                 .createTime(new Date())
                 .updateTime(new Date())
                 .showFlag(false)
@@ -156,6 +156,7 @@ public class ShareServiceImpl implements ShareService {
         this.shareMapper.updateByPrimaryKey(share);
         //3,如果是PASS,那么发送消息给rocketmq，让用户中心去消费，并为发布人添加积分
         if (AuditStatusEnum.PASS.equals(shareAuditDTO.getAuditStatusEnum())) {
+            this.midUserShareMapper.insertSelective(MidUserShare.builder().shareId(share.getId()).userId(share.getUserId()).build());
             long nowTime = System.currentTimeMillis();
             //1，rocketmq异步实现加积分
             this.rocketMQTemplate.convertAndSend(

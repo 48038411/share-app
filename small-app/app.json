@@ -4,7 +4,10 @@
     "pages/tougao/tougao",
     "pages/personal/personal",
     "pages/shareDetail/shareDetail",
-    "pages/duihuanSuccess/duihuanSuccess"
+    "pages/duihuanSuccess/duihuanSuccess",
+    "pages/myDuihuan/myDuihuan",
+    "pages/jifenLog/jifenLog",
+    "pages/myContribute/myContribute"
   ],
   "window": {
     "backgroundTextStyle": "light",

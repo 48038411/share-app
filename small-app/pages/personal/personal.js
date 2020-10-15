@@ -9,7 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo:null
+    userInfo:null,
+    isSignin: 0
   },
 
   /**
@@ -99,12 +100,13 @@ Page({
               const request = JSON.parse(res)
               
               app.globalData.user = request.user
-              app.globalData.token = request.token['token'] 
+              console.log(request);
               
               wx.setStorageSync('user', app.globalData.user)
               wx.setStorageSync('token', app.globalData.token)
               that.setData({
-                userInfo:app.globalData.user
+                userInfo:app.globalData.user,
+                isSignin: request.isUserSignin
               })
             })
           
@@ -126,6 +128,32 @@ Page({
           console.log("微信授权")
           
         }
+      }
+    })
+  },
+  myDuihuan(){  
+    console.log(wx.getStorageSync('user'));   
+  },
+  signIn(){
+    API.signIn({
+      userId: wx.getStorageSync('user').id
+    }).then(res => {
+      const req = JSON.parse(res)      
+      if(req.code == 200){
+        wx.showToast({
+          title: '签到成功',
+          icon: "success",
+          tx: '签到成功，记得每天都要来哦'
+        })
+        this.setData({
+          isSignin: 1
+        })
+      }else {
+        wx.showModal({
+          cancelColor: 'cancelColor',
+          title: '签到失败',
+          content: '今天已经签到过了哦'
+        })
       }
     })
   }

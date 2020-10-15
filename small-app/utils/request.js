@@ -98,5 +98,8 @@ module.exports ={
   },
   contribute:(data) => {
     return post('/shares/contribute',data,'json') //投稿
+  },
+  signIn: (data) => {
+    return post('/users/signin',data,'json') // 签到
   }
 }

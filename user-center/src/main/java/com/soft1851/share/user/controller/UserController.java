@@ -2,6 +2,7 @@ package com.soft1851.share.user.controller;
 
 import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
+import com.soft1851.share.user.dao.BonusEventLogMapper;
 import com.soft1851.share.user.domain.dto.*;
 import com.soft1851.share.user.domain.entity.User;
 import com.soft1851.share.user.service.UserService;
@@ -29,6 +30,7 @@ public class UserController {
     private final UserService userService;
     private final WxMaService wxMaService;
     private final JwtOperator jwtOperator;
+    private final BonusEventLogMapper bonusEventLogMapper;
 
     @PostMapping(value = "/login")
     public LoginResDTO login(@RequestBody LoginDTO loginDTO) throws WxErrorException {
@@ -52,6 +54,13 @@ public class UserController {
         userInfo.put("role",user.getRoles());
         String token = jwtOperator.generateToken(userInfo);
         log.info("{}登录成功，生成的token = {}，有效期到： {}",user.getWxNickname(),token,jwtOperator.getExpirationTime());
+        ResponseDTO responseDTO = this.userService.checkIsSign(UserSignInDTO.builder().userId(user.getId()).build());
+        int isUserSignin = 0;
+        if (responseDTO.getCode()=="200"){
+            isUserSignin = 0;
+        }else {
+            isUserSignin = 1;
+        }
         return LoginResDTO.builder()
                 .user(UserRespDTO.builder()
                       .id(user.getId())
@@ -63,6 +72,7 @@ public class UserController {
                 .token(token)
                 .expirationTime(jwtOperator.getExpirationTime().getTime())
                 .build())
+                .isUserSignin(isUserSignin)
                 .build();
     }
 //    @PostMapping(value = "wxLogin")
@@ -100,5 +110,9 @@ public class UserController {
     @PostMapping(value = "/reduceBonus")
     public User reduceBonus(@RequestBody UserAddBonusMsgDTO userAddBonusMsgDTO){
         return userService.reduceBonus(userAddBonusMsgDTO);
+    }
+    @PostMapping(value = "/signin")
+    public ResponseDTO signIn(@RequestBody UserSignInDTO userSignInDTO){
+        return userService.signIn(userSignInDTO);
     }
 }
