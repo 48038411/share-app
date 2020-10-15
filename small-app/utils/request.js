@@ -1,3 +1,5 @@
+const request = require("request");
+
 //统一接口封装
 const API_BASE_URL = 'http://guoruichang.utools.club';
 const app = getApp()
@@ -36,7 +38,7 @@ const get = (url, data) => {
       var headerObj = {
         'X-Token': app.globalData.token,
         'content-type' : 'application/json'};
-      // console.log(app.globalData.token);
+      //  console.log(app.globalData.token);
     break;
     default :
       var headerObj = {'content-type' : 'application/json'};
@@ -101,5 +103,11 @@ module.exports ={
   },
   signIn: (data) => {
     return post('/users/signin',data,'json') // 签到
+  },
+  myShare: (data) => {
+    return post('/shares/myShare',data,'json') //查询我的兑换
+  },
+  myLog: (data) => {
+    return post('/users/mylog',data,'json') //查询我的积分明细
   }
 }

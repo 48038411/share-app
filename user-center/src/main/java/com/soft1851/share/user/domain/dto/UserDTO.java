@@ -14,6 +14,9 @@ import java.util.Date;
  * @create 2020-09-24 22:59
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class UserDTO {
     /**
      * Id

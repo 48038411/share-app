@@ -101,7 +101,7 @@ Page({
               
               app.globalData.user = request.user
               console.log(request);
-              
+              app.globalData.token = request.token.token
               wx.setStorageSync('user', app.globalData.user)
               wx.setStorageSync('token', app.globalData.token)
               that.setData({
@@ -132,7 +132,9 @@ Page({
     })
   },
   myDuihuan(){  
-    console.log(wx.getStorageSync('user'));   
+    wx.navigateTo({
+      url: '../myDuihuan/myDuihuan'
+    })
   },
   signIn(){
     API.signIn({
@@ -155,6 +157,16 @@ Page({
           content: '今天已经签到过了哦'
         })
       }
+    })
+  },
+  jifenLog(){
+    wx.navigateTo({
+      url: '../jifenLog/jifenLog',
+    })
+  },
+  myContribute(){
+    wx.navigateTo({
+      url: '../myContribute/myContribute',
     })
   }
 })

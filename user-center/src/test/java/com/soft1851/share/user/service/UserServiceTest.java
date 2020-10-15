@@ -1,5 +1,6 @@
 package com.soft1851.share.user.service;
 
+import com.soft1851.share.user.domain.dto.UserDTO;
 import com.soft1851.share.user.domain.dto.UserSignInDTO;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
@@ -14,5 +15,9 @@ class UserServiceTest {
     @Test
     void singIn() {
         System.out.println(userService.signIn(UserSignInDTO.builder().userId(5).build()));
+    }
+    @Test
+    void seletLog(){
+        System.out.println(userService.getLog(UserDTO.builder().id(5).build()));
     }
 }

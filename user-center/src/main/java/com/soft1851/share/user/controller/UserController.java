@@ -115,4 +115,8 @@ public class UserController {
     public ResponseDTO signIn(@RequestBody UserSignInDTO userSignInDTO){
         return userService.signIn(userSignInDTO);
     }
+    @PostMapping(value = "/mylog")
+    public ResponseDTO myLog(@RequestBody UserDTO userDTO){
+        return userService.getLog(userDTO);
+    }
 }

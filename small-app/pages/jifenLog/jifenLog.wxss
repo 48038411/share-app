@@ -1,1 +1,54 @@
-/* pages/jifenLog/jifenLog.wxss */
+/* pages/jifenLog/jifenLog.wxss
+.list{
+  display: flex;
+  padding-bottom: 20rpx;
+  width: 100%;
+}
+.img{
+  width: 60rpx;
+  height: 60rpx;
+}
+.text{
+  width: 50%;
+  float: left;
+  margin-left: 10rpx;
+  font-size: 16px;
+}
+.value{
+  width: 50%;
+  float: right;
+  margin-right: 0em;
+  /* margin-right: 50rpx; */
+  /* font-size: 16px;
+} */ 
+/* pages/jifenmingxi/jifenmingxi.wxss */
+.jifen {
+  height: 25px;
+display: flex;
+justify-content: space-between;
+flex-direction: row;
+padding: 10px;
+align-items: center;
+border-bottom: 1px solid #eeeeee;
+
+}
+.jifen image {
+  width: 16px;
+  height: 16px;
+ margin-right: 10px;
+}
+.jifen-left {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+}
+
+.jifen-left text {
+  color: #777474;
+  font-size: 14px;
+}
+.jifen-right {
+  color: #777474;
+  font-size: 14px;
+}

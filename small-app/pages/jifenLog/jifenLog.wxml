@@ -1,2 +1,14 @@
 <!--pages/jifenLog/jifenLog.wxml-->
-<text>pages/jifenLog/jifenLog.wxml</text>
+<!-- <view class="list" wx:for="{{logList}}" wx:for-item="log">
+<image src="../../images/log.png" class="img"></image>
+<text class="text">{{log.createTime}} -  {{log.event}}</text>
+<text class="value">{{log.value}}</text>
+</view> -->
+
+<view wx:for="{{logList}}" wx:for-item="log" class="jifen">
+  <view class="jifen-left">
+    <image src="../../images/qiandao.png"></image>
+    <text>{{log.createTime}} - {{log.event}}</text>
+  </view>
+  <text class="jifen-right">{{log.value}}</text>
+</view>

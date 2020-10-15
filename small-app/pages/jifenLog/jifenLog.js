@@ -1,11 +1,13 @@
 // pages/jifenLog/jifenLog.js
+const API = require('../../utils/request')
+const dateUtil = require('../../utils/util')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    logList: null,
   },
 
   /**
@@ -26,7 +28,23 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    API.myLog({
+      id: wx.getStorageSync('user').id 
+    }).then(res => {
+      const req = JSON.parse(res)
+      const that = this
+      for(let t in req.data){        
+        let date = dateUtil.formatTime(req.data[t].createTime)
+        req.data[t].createTime = date
+      }
+      
+      that.setData({
+        logList: req.data
+      })
+      
+    ;
+      
+    })
   },
 
   /**

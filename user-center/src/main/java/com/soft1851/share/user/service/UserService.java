@@ -55,4 +55,11 @@ public interface UserService {
      * @return
      */
     ResponseDTO checkIsSign(UserSignInDTO signInDTO);
+
+    /**
+     * 查询用户日志
+     * @param userDTO
+     * @return
+     */
+    ResponseDTO getLog(UserDTO userDTO);
 }

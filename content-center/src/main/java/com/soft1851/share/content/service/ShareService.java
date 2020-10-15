@@ -1,11 +1,11 @@
 package com.soft1851.share.content.service;
 
 import com.github.pagehelper.PageInfo;
-import com.soft1851.share.content.domain.dto.ExchangeDTO;
-import com.soft1851.share.content.domain.dto.ShareAuditDTO;
-import com.soft1851.share.content.domain.dto.ShareDTO;
-import com.soft1851.share.content.domain.dto.ShareRequestDTO;
+import com.soft1851.share.content.domain.dto.*;
 import com.soft1851.share.content.domain.entity.Share;
+
+import java.nio.file.attribute.UserDefinedFileAttributeView;
+import java.util.List;
 
 /**
  * @author Guorc
@@ -53,4 +53,11 @@ public interface ShareService {
      * @return Share
      */
     Share exchange(ExchangeDTO exchangeDTO);
+
+    /**
+     * 根据用户id查询share
+     * @param userDTO
+     * @return
+     */
+    List<Share> queryMy(UserDTO userDTO);
 }

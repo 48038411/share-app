@@ -7,6 +7,7 @@ import com.github.pagehelper.PageInfo;
 import com.soft1851.share.content.dao.MidUserShareMapper;
 import com.soft1851.share.content.dao.ShareMapper;
 import com.soft1851.share.content.domain.dto.*;
+import com.soft1851.share.content.domain.entity.BonusEventLog;
 import com.soft1851.share.content.domain.entity.MidUserShare;
 import com.soft1851.share.content.domain.entity.Share;
 import com.soft1851.share.content.domain.enums.AuditStatusEnum;
@@ -23,6 +24,7 @@ import org.springframework.web.client.AsyncRestTemplate;
 import tk.mybatis.mapper.entity.Example;
 import tk.mybatis.mapper.util.StringUtil;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -257,6 +259,23 @@ public class ShareServiceImpl implements ShareService {
         );
         return share;
         }
+
+    @Override
+    public List<Share> queryMy(UserDTO userDTO) {
+        Example example = new Example(MidUserShare.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("userId",userDTO.getId());
+        List<MidUserShare> midUserShares =  midUserShareMapper.selectByExample(example);
+        List<Share> shareList = new ArrayList<>();
+        midUserShares.stream().forEach(
+                midUserShare -> {
+                    Share share = shareMapper.selectByPrimaryKey(Share.builder().id(midUserShare.getShareId()).build());
+                    shareList.add(share);
+                }
+        );
+        return shareList;
+    }
+
     /**
      * 将统一的返回响应结果转换为UserDTO类型
      * @param responseDTO

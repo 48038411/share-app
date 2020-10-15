@@ -106,6 +106,7 @@ Page({
             price: e.detail.value.price,
             downloadUrl: e.detail.value.downloadUrl
         }).then(res => {
+            const req = JSON.parse(res)
             wx.showToast({
               title: '投稿成功', 
               icon: 'success'

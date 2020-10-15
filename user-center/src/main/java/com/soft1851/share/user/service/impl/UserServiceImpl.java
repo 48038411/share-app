@@ -4,10 +4,7 @@ import cn.binarywang.wx.miniapp.config.impl.WxMaDefaultConfigImpl;
 import com.soft1851.share.user.common.ResponseResult;
 import com.soft1851.share.user.dao.BonusEventLogMapper;
 import com.soft1851.share.user.dao.UserMapper;
-import com.soft1851.share.user.domain.dto.LoginDTO;
-import com.soft1851.share.user.domain.dto.ResponseDTO;
-import com.soft1851.share.user.domain.dto.UserAddBonusMsgDTO;
-import com.soft1851.share.user.domain.dto.UserSignInDTO;
+import com.soft1851.share.user.domain.dto.*;
 import com.soft1851.share.user.domain.entity.BonusEventLog;
 import com.soft1851.share.user.domain.entity.User;
 import com.soft1851.share.user.service.UserService;
@@ -178,5 +175,15 @@ public class UserServiceImpl implements UserService {
             e.printStackTrace();
         }
         return new ResponseDTO(true,"200","该用户还没有签到","可以签到",1l);
+    }
+
+    @Override
+    public ResponseDTO getLog(UserDTO userDTO) {
+        Example example = new Example(BonusEventLog.class);
+        example.setOrderByClause("create_time DESC");
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("userId",userDTO.getId());
+        List<BonusEventLog> bonusEventLogList = this.bonusEventLogMapper.selectByExample(example);
+        return new ResponseDTO(true,"200","查询成功",bonusEventLogList,1l);
     }
 }
