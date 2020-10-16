@@ -109,5 +109,8 @@ module.exports ={
   },
   myLog: (data) => {
     return post('/users/mylog',data,'json') //查询我的积分明细
+  },
+  myContribute: (data) => {
+    return post('/shares/myContribute',data,'json') //查询我的投稿
   }
 }

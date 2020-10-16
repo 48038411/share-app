@@ -1,11 +1,12 @@
 // pages/myContribute/myContribute.js
+const API = require('../../utils/request')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    shareList: null
   },
 
   /**
@@ -26,7 +27,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    API.myContribute({
+      id: wx.getStorageSync('user').id
+    }).then(res => {
+      const req = JSON.parse(res)
+      var that = this
+      that.setData({
+        shareList: req.data
+      })
+    })
   },
 
   /**

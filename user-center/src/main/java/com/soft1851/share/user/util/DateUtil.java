@@ -34,20 +34,6 @@ public class DateUtil {
         System.out.println(localTime.isBefore(startTime));
         //如果小于今天的开始日期
         if (localTime.isBefore(startTime)) {
-//            /**判断是否小于昨天，小于昨天证明签到不连续，签到记录表签到连续次数设置为0*/
-//            Date newTime = new Date();
-//            //将下面的 理解成  yyyy-MM-dd 00：00：00 更好理解点
-//            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-//            String todayStr = format.format(newTime);
-//            Date today = format.parse(todayStr);
-//            //昨天 86400000=24*60*60*1000 一天  大于昨天 至少为前天
-//            if ((today.getTime() - date.getTime()) > 86400000) {
-//                result = 2;
-//                log.info("小于今天的开始日期,至少为前天的时间,连续签到终止");
-//            } else {
-//                result = 0;
-//                log.info("小于今天的开始日期,最后一次签到是昨天，连续签到未终止");
-//            }
             log.info("数据库的数据小于今天的开始日期，没有签到，可以签到");
             return 0;
         }

@@ -1,7 +1,7 @@
 // pages/personal/personal.js
 
 const app = getApp();
-const API = require('../../utils/request.js')
+const API = require('../../utils/request.js');
 
 Page({
 
@@ -31,7 +31,24 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    // const that = this
+    // API.login({
+    //   wxId: app.globalData.wxId,
+    //   wxNickName: app.globalData.userInfo.nickName,
+    //   avatar: app.globalData.userInfo.avatarUrl
+    // }).then( res =>{
+    //   const request = JSON.parse(res)
+      
+    //   app.globalData.user = request.user
+    //   console.log(request);
+    //   app.globalData.token = request.token.token
+    //   wx.setStorageSync('user', app.globalData.user)
+    //   wx.setStorageSync('token', app.globalData.token)
+    //   that.setData({
+    //     userInfo:app.globalData.user,
+    //     isSignin: request.isUserSignin
+    //   })
+    // })
   },
 
   /**
@@ -86,7 +103,6 @@ Page({
 
           success: res =>{
               app.globalData.wxId = res.data.openid                
-
           wx.getUserInfo({
           success: function(res) {
             console.log("昵称是:" + res.userInfo.nickName)
@@ -141,14 +157,17 @@ Page({
       userId: wx.getStorageSync('user').id
     }).then(res => {
       const req = JSON.parse(res)      
+      console.log(req);
       if(req.code == 200){
         wx.showToast({
           title: '签到成功',
           icon: "success",
           tx: '签到成功，记得每天都要来哦'
+
         })
         this.setData({
-          isSignin: 1
+          isSignin: 1,
+          userInfo: res.data
         })
       }else {
         wx.showModal({

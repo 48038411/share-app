@@ -123,29 +123,45 @@ public class UserServiceImpl implements UserService {
         criteria.andEqualTo("userId",signInDTO.getUserId());
         criteria.andEqualTo("event","SIGN_IN");
         List<BonusEventLog> bonusEventLog = this.bonusEventLogMapper.selectByExample(example);
-        BonusEventLog bonusEventLog1 = bonusEventLog.get(0);
-        Date date = bonusEventLog1.getCreateTime();
-        try {
-            if (DateUtil.checkAllotSigin(date) == 0){
-                this.bonusEventLogMapper.insert(BonusEventLog.builder()
-                        .userId(signInDTO.getUserId())
-                        .event("SIGN_IN")
-                        .value(20)
-                        .description("签到加积分")
-                        .createTime(new Date())
-                        .build());
-                return new ResponseDTO(true,"200","签到成功",user.getWxNickname()+"用户签到成功",1l);
+        //判断日志表有没有记录，如果没有直接插入数据并提示签到成功
+        if (bonusEventLog.size() == 0){
+            this.bonusEventLogMapper.insert(BonusEventLog.builder()
+                    .userId(signInDTO.getUserId())
+                    .event("SIGN_IN")
+                    .value(20)
+                    .description("签到加积分")
+                    .createTime(new Date())
+                    .build());
+            user.setBonus(user.getBonus()+20);
+            this.userMapper.updateByPrimaryKeySelective(user);
+            return new ResponseDTO(true,"200","签到成功",user,1l);
+        }else {
+            BonusEventLog bonusEventLog1 = bonusEventLog.get(0);
+            Date date = bonusEventLog1.getCreateTime();
+            try {
+                if (DateUtil.checkAllotSigin(date) == 0){
+                    this.bonusEventLogMapper.insert(BonusEventLog.builder()
+                            .userId(signInDTO.getUserId())
+                            .event("SIGN_IN")
+                            .value(20)
+                            .description("签到加积分")
+                            .createTime(new Date())
+                            .build());
+                    user.setBonus(user.getBonus()+20);
+                    this.userMapper.updateByPrimaryKeySelective(user);
+                    return new ResponseDTO(true,"200","签到成功",user,1l);
+                }
+                else if (DateUtil.checkAllotSigin(date) == 1){
+                    return new ResponseDTO(false,"201","签到失败",user.getWxNickname()+"今天已经签到过了",1l);
+                }
+                else if (DateUtil.checkAllotSigin(date) == 2){
+                    return new ResponseDTO(false,"202","签到失败",user.getWxNickname()+"用户，今天数据错乱了",1l);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            else if (DateUtil.checkAllotSigin(date) == 1){
-                return new ResponseDTO(false,"201","签到失败",user.getWxNickname()+"今天已经签到过了",1l);
-            }
-            else if (DateUtil.checkAllotSigin(date) == 2){
-                return new ResponseDTO(false,"202","签到失败",user.getWxNickname()+"用户，今天数据错乱了",1l);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+            return new ResponseDTO(true,"200","签到成功",user.getWxNickname()+"签到成功",1l);
         }
-        return new ResponseDTO(true,"200","签到成功",user.getWxNickname()+"签到成功",1l);
     }
     @Override
     public  ResponseDTO checkIsSign(UserSignInDTO signInDTO){
@@ -159,22 +175,26 @@ public class UserServiceImpl implements UserService {
         criteria.andEqualTo("userId",signInDTO.getUserId());
         criteria.andEqualTo("event","SIGN_IN");
         List<BonusEventLog> bonusEventLog = this.bonusEventLogMapper.selectByExample(example);
-        BonusEventLog bonusEventLog1 = bonusEventLog.get(0);
-        Date date = bonusEventLog1.getCreateTime();
-        try {
-            if (DateUtil.checkAllotSigin(date) == 0){
-                return new ResponseDTO(true,"200","该用户还没有签到","可以签到",1l);
+        if (bonusEventLog.size() == 0){
+            return new ResponseDTO(true,"200","该用户还没有签到","可以签到",1l);
+        }else {
+            BonusEventLog bonusEventLog1 = bonusEventLog.get(0);
+            Date date = bonusEventLog1.getCreateTime();
+            try {
+                if (DateUtil.checkAllotSigin(date) == 0){
+                    return new ResponseDTO(true,"200","该用户还没有签到","可以签到",1l);
+                }
+                else if (DateUtil.checkAllotSigin(date) == 1){
+                    return new ResponseDTO(false,"201","已经签到了","不可以签到",1l);
+                }
+                else if (DateUtil.checkAllotSigin(date) == 2){
+                    return new ResponseDTO(false,"202","数据出错了","不可以签到",1l);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            else if (DateUtil.checkAllotSigin(date) == 1){
-                return new ResponseDTO(false,"201","已经签到了","不可以签到",1l);
-            }
-            else if (DateUtil.checkAllotSigin(date) == 2){
-                return new ResponseDTO(false,"202","数据出错了","不可以签到",1l);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+            return new ResponseDTO(true,"200","该用户还没有签到","可以签到",1l);
         }
-        return new ResponseDTO(true,"200","该用户还没有签到","可以签到",1l);
     }
 
     @Override

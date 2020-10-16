@@ -276,6 +276,15 @@ public class ShareServiceImpl implements ShareService {
         return shareList;
     }
 
+    @Override
+    public List<Share> myContribute(UserDTO userDTO) {
+        Example example = new Example(Share.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("userId",userDTO.getId());
+        List<Share> shareList = this.shareMapper.selectByExample(example);
+        return shareList;
+    }
+
     /**
      * 将统一的返回响应结果转换为UserDTO类型
      * @param responseDTO

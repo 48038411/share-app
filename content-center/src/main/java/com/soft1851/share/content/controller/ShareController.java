@@ -82,4 +82,10 @@ public class ShareController {
     public List<Share> getMy(@RequestBody UserDTO userDTO){
         return this.shareService.queryMy(userDTO);
     }
+    @PostMapping("/myContribute")
+    @CheckLogin
+    @ApiOperation(value = "查询我的投稿",notes = "查询我的投稿")
+    public List<Share> myContribue(@RequestBody UserDTO userDTO){
+        return this.shareService.myContribute(userDTO);
+    }
 }

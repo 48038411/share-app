@@ -55,9 +55,16 @@ public interface ShareService {
     Share exchange(ExchangeDTO exchangeDTO);
 
     /**
-     * 根据用户id查询share
+     * 根据用户id查询该用户兑换的资源
      * @param userDTO
      * @return
      */
     List<Share> queryMy(UserDTO userDTO);
+
+    /**
+     * 根据用户id查询该用户投稿的资源
+     * @param userDTO
+     * @return
+     */
+    List<Share> myContribute(UserDTO userDTO);
 }
