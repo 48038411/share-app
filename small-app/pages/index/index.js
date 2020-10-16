@@ -8,14 +8,25 @@ Page({
      */
     data: {
         tab: 0,
-        shareList: null
+        shareList: null,
+        notice: null,
+        pageNo: 1,
+        pageSize: 5
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        var that = this
+        API.getNotic().then(res => {
+            that.setData({
+                notice: res.data
+            })
+        })
+        that.setData({
+            user: app.globalData.user
+        })
     },
 
     /**
@@ -31,7 +42,10 @@ Page({
     onShow: function () {
 
         var that = this
-        API.getList().then(res => {
+        API.getList({
+            pageNo: that.data.pageNo,
+            pageSize: that.data.pageSize
+        }).then(res => {
             that.setData({
                 shareList: res.data
             })
@@ -42,7 +56,9 @@ Page({
      * 生命周期函数--监听页面隐藏
      */
     onHide: function () {
-
+        this.setData({
+            pageNo:1
+          })
     },
 
     /**
@@ -63,7 +79,20 @@ Page({
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function () {
-
+        var that = this
+        that.setData({
+          pageNo:that.data.pageNo+1
+        })
+        API.getList({
+          pageNo:that.data.pageNo,
+          pageSize:that.data.pageSize
+        }).then(res =>{
+          const shares = res.data
+          that.setData({
+            shareList:that.data.shareList.concat(shares)
+          })
+        
+        })
     },
 
     /**
@@ -99,6 +128,20 @@ Page({
         var share = e.currentTarget.dataset.item
         wx.navigateTo({
             url: '../shareDetail/shareDetail?share=' + JSON.stringify(share),
+        })
+    },
+    search(e) {
+        console.log(e.detail);
+        API.getList({
+            title: e.detail.value
+        }).then(res => {
+            console.log(res);
+
+            // const req = JSON.parse(res)            
+            const that = this
+            that.setData({
+                shareList: res.data
+            })
         })
     }
 })

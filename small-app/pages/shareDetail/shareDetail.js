@@ -84,4 +84,10 @@ Page({
             
         })
     },
+    down(e){
+        var share = e.currentTarget.dataset.item
+        wx.navigateTo({
+            url: '../duihuanSuccess/duihuanSuccess?share=' + JSON.stringify(share),
+        })   
+    }
 })

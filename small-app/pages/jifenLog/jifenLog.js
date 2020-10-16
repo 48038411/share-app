@@ -1,6 +1,6 @@
 // pages/jifenLog/jifenLog.js
 const API = require('../../utils/request')
-const dateUtil = require('../../utils/util')
+const dateUtil = require('../../utils/util');
 Page({
 
   /**
@@ -8,6 +8,7 @@ Page({
    */
   data: {
     logList: null,
+    imgUrl: null
   },
 
   /**
@@ -31,11 +32,28 @@ Page({
     API.myLog({
       id: wx.getStorageSync('user').id 
     }).then(res => {
+      for(let c in res){
+        console.log();
+      }
       const req = JSON.parse(res)
       const that = this
-      for(let t in req.data){        
-        let date = dateUtil.formatTime(req.data[t].createTime)
-        req.data[t].createTime = date
+      for(var t of req.data){        
+        let date = dateUtil.formatTime(t.createTime)
+        t.createTime = date
+        const event = t.event;
+        if(event == 'SIGN_IN'){
+          that.setData({
+            imgUrl: '../../images/qiandao.png'
+          })
+          console.log(this.data.imgUrl);
+          
+        }else if(event == 'CONTRIBUTE'){  
+          that.setData({
+            imgUrl: '../../images/contribute.png'
+          })
+          console.log(this.data.imgUrl);
+          
+        }
       }
       
       that.setData({

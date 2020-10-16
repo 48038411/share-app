@@ -7,7 +7,7 @@
 
 <view wx:for="{{logList}}" wx:for-item="log" class="jifen">
   <view class="jifen-left">
-    <image src="../../images/qiandao.png"></image>
+    <image src="{{imgUrl}}"></image>
     <text>{{log.createTime}} - {{log.event}}</text>
   </view>
   <text class="jifen-right">{{log.value}}</text>

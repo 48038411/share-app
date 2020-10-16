@@ -7,9 +7,9 @@ const app = getApp()
 const get = (url, data) => { 
   let _url = API_BASE_URL  + url;
   return new Promise((resolve, reject) => {
-    wx.showLoading({
-      title: "正在加载中...",
-    })
+    // wx.showLoading({
+    //   title: "正在加载中...",
+    // })
     wx.request({
       url: _url,
       method: "get",
@@ -109,6 +109,10 @@ module.exports ={
   },
   myLog: (data) => {
     return post('/users/mylog',data,'json') //查询我的积分明细
+  },
+  getNotic:() =>{
+    console.log('获取最新公告')
+    return get('/notice/one') //获取最新公告
   },
   myContribute: (data) => {
     return post('/shares/myContribute',data,'json') //查询我的投稿

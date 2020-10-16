@@ -8,10 +8,14 @@ bindtap="changeTab">使用说明</view>
 </view>
 <!-- tab1 发现页 -->
 <view class="share-list" wx:if="{{tab == 0}}">
-<view>
-  <input type="text" class="search" placeholder="请输入搜索内容"/>
-
+  <view class="nocice">
+<text>{{notice.content}}</text>
 </view>
+<view class="search">
+<input placeholder="请输入搜索内容" confirm-type="search" class="search-input" bindinput="search" placeholder-class="placeholder-class"></input>
+</view>
+
+
 <view wx:for="{{shareList}}" wx:for-item="share" class="share-item">
 <view wx:if="{{share.isOriginal==0}}" class="origin-label {{share.isOriginal == 0 ? 'one':'two'}}">原创</view>
 <view wx:else class="origin-label {{share.isOriginal==0? 'one':'two'}}">转载</view>

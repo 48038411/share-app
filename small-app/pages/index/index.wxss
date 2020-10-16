@@ -102,7 +102,33 @@
   font-size: 32rpx;
   padding: 20rpx;
 }
+.nocice{
+  padding: 10rpx;
+  font-size: 35rpx;
+  color: red;
+  background-color: rgba(255, 196, 0,0.3);
+  font-weight: 500;
+}
 
+.search{
+  display: flex;
+  justify-content: center;
+  padding: 10rpx;
+  width: 100%;
+  background-color: rgb(247, 232, 232);
+}
+
+.placeholder-class{
+  align-items: center;
+  font-size: 30rpx;
+}
+
+.search-input{
+  background-color: #fff;
+  border-radius: 5%;
+  padding: 5rpx;
+  width: 700rpx;
+}
 .dicription-title{
   font-weight: 600;
 }

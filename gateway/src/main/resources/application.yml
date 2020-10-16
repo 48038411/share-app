@@ -22,9 +22,9 @@ spring:
          predicates:
            - Path=/shares/**
        - id: path_route3
-         uri: lb://content/center
+         uri: lb://content-center
          predicates:
-           - Path=/notices/**
+           - Path=/notice/**
 #           - Cookie=username,guorc
 #           - Method=GET
 #           - Between=2020-10-09T11:32:12.975035+08:00[Asia/Shanghai],2021-06-07T16:32:12.975035+08:00[Asia/Shanghai]

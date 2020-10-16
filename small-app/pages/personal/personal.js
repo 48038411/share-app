@@ -2,7 +2,7 @@
 
 const app = getApp();
 const API = require('../../utils/request.js');
-
+const dateUtil = require('../../utils/util')
 Page({
 
   /**
@@ -114,6 +114,8 @@ Page({
               avatar: app.globalData.userInfo.avatarUrl
             }).then( res =>{
               const request = JSON.parse(res)
+              const time = dateUtil.formatTimeTwo(request.token.expirationTime,'Y-M-D h:m:s')
+              console.log(time);
               
               app.globalData.user = request.user
               console.log(request);

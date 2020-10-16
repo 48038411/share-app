@@ -5,9 +5,11 @@
 <view class="summary">
   <text>{{share.summary}}</text>
 </view>
+<image src="{{share.cover}}"></image>
 <view class="duihuan">
   <text>积分：</text>
   <text class="price">$ {{share.price}}</text>
-  <text class="btn" data-item="{{share}}" bindtap="duihuan">兑换</text>
+  <text class="btn" data-item="{{share}}" bindtap="duihuan" wx:if="{{share.downloadUrl == null}}">兑换</text>
+  <text class="btn" data-item="{{share}}" bindtap="down" wx:else>下载</text>
 </view>
 </view>

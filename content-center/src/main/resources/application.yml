@@ -13,6 +13,13 @@ spring:
     nacos:
       discovery:
         server-addr: 47.115.60.46:8848
+  zipkin:
+    base-url: http://localhost:9411/
+    #    不要被nacos发现
+    discoveryClientEnabled: false
+  sleuth:
+    sampler:
+      probability: 1.0
   #    sentinel:
   #      transport:
   #        dashboard: localhost:8080
