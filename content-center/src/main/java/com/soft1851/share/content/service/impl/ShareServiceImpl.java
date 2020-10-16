@@ -285,6 +285,19 @@ public class ShareServiceImpl implements ShareService {
         return shareList;
     }
 
+    @Override
+    public List<Share> getUnAudit() {
+        Example example = new Example(Share.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("auditStatus","NOT_YET");
+        List<Share> shareList = this.shareMapper.selectByExample(example);
+        if (shareList.size() == 0){
+            throw new IllegalArgumentException("没有待审核数据");
+        }else {
+            return shareList;
+        }
+    }
+
     /**
      * 将统一的返回响应结果转换为UserDTO类型
      * @param responseDTO

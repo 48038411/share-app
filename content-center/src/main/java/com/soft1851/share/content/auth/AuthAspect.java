@@ -66,6 +66,7 @@ public class AuthAspect {
         try {
             //1，验证token是否合法;
             this.checkToken();
+            System.out.println("1检测");
             //2，验证用户角色是否匹配
             HttpServletRequest request = getHttpServletRequest();
             String role = (String) request.getAttribute( "role");

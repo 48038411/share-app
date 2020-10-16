@@ -7,7 +7,8 @@
     "pages/duihuanSuccess/duihuanSuccess",
     "pages/myDuihuan/myDuihuan",
     "pages/jifenLog/jifenLog",
-    "pages/myContribute/myContribute"
+    "pages/myContribute/myContribute",
+    "pages/audit/audit"
   ],
   "window": {
     "backgroundTextStyle": "light",

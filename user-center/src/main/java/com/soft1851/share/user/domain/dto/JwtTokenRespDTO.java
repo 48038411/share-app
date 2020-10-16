@@ -18,4 +18,5 @@ import lombok.NoArgsConstructor;
 public class JwtTokenRespDTO {
     private String token;
     private Long expirationTime;
+    private String role;
 }

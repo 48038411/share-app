@@ -67,4 +67,10 @@ public interface ShareService {
      * @return
      */
     List<Share> myContribute(UserDTO userDTO);
+
+    /**
+     * 查询未审核的帖子
+     * @return
+     */
+    List<Share> getUnAudit();
 }

@@ -10,7 +10,8 @@ Page({
    */
   data: {
     userInfo:null,
-    isSignin: 0
+    isSignin: 0,
+    userRole: null
   },
 
   /**
@@ -115,17 +116,17 @@ Page({
             }).then( res =>{
               const request = JSON.parse(res)
               const time = dateUtil.formatTimeTwo(request.token.expirationTime,'Y-M-D h:m:s')
-              console.log(time);
               
               app.globalData.user = request.user
-              console.log(request);
               app.globalData.token = request.token.token
               wx.setStorageSync('user', app.globalData.user)
               wx.setStorageSync('token', app.globalData.token)
               that.setData({
                 userInfo:app.globalData.user,
-                isSignin: request.isUserSignin
+                isSignin: request.isUserSignin,
+                userRole: request.token.role
               })
+              
             })
           
           }
@@ -188,6 +189,11 @@ Page({
   myContribute(){
     wx.navigateTo({
       url: '../myContribute/myContribute',
+    })
+  },
+  audit(){
+    wx.navigateTo({
+      url: '../audit/audit',
     })
   }
 })

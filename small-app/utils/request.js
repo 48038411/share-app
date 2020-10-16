@@ -29,6 +29,7 @@ const get = (url, data) => {
   });
 }
  const post = (url, data,contentType) => {
+   const token = wx.getStorageSync('token')
   let _url = API_BASE_URL  + url;
   switch(contentType){
     case "form" :
@@ -36,9 +37,10 @@ const get = (url, data) => {
     break;
     case "json" : 
       var headerObj = {
-        'X-Token': app.globalData.token,
+        'X-Token': token,
         'content-type' : 'application/json'};
-      //  console.log(app.globalData.token);
+        
+        
     break;
     default :
       var headerObj = {'content-type' : 'application/json'};
@@ -66,7 +68,9 @@ const put = (url, data,contentType) => {
       var headerObj = {'content-type' : 'application/x-www-form-urlencoded'};
     break;
     case "json" : 
-      var headerObj = {'content-type' : 'application/json'};
+      var headerObj = {
+        'X-Token': app.globalData.token,
+        'content-type' : 'application/json'};
     break;
     default :
       var headerObj = {'content-type' : 'application/json'};
@@ -116,5 +120,11 @@ module.exports ={
   },
   myContribute: (data) => {
     return post('/shares/myContribute',data,'json') //查询我的投稿
+  },
+  audit:(data) => {
+    return put('/admin/shares/audit/{id}',data,'json')//审核
+  },
+  getUnAudit:(data) => {
+    return post('/admin/shares/audit/list',data,'json') //查询未审核数据
   }
 }

@@ -71,6 +71,7 @@ public class UserController {
                 .token(JwtTokenRespDTO.builder()
                 .token(token)
                 .expirationTime(jwtOperator.getExpirationTime().getTime())
+                        .role(user.getRoles())
                 .build())
                 .isUserSignin(isUserSignin)
                 .build();
@@ -113,8 +114,6 @@ public class UserController {
     }
     @PostMapping(value = "/signin")
     public ResponseDTO signIn(@RequestBody UserSignInDTO userSignInDTO){
-        System.out.println(userSignInDTO.getUserId());
-        System.out.println("111");
         return userService.signIn(userSignInDTO);
     }
     @PostMapping(value = "/mylog")
