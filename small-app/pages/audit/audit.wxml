@@ -1,2 +1,14 @@
 <!--pages/audit/audit.wxml-->
-<text>pages/audit/audit.wxml</text>
+<!--pages/myDuihuan/myDuihuan.wxml-->
+<view wx:for="{{auditList}}" wx:for-item="share" class="share-item">
+<view wx:if="{{share.isOriginal==0}}" class="origin-label {{share.isOriginal == 0 ? 'one':'two'}}">原创</view>
+<view wx:else class="origin-label {{share.isOriginal==0? 'one':'two'}}">转载</view>
+<image src="{{share.cover}}"></image>
+<view class="item-main" data-item="{{share}}" bindtap="goDetail">
+<text class="item-title">{{share.title}}</text>
+<text class="item-summary">{{share.summary}}</text>
+</view>
+<view class="item-duihuan">
+<text data-item="{{share}}" bindtap="audit">审核</text>
+</view>
+</view>

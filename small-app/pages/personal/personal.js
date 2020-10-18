@@ -144,8 +144,7 @@ Page({
     wx.getSetting({
       success(res) {
         if(res.authSetting['scope.userInfo']) {
-          console.log("微信授权")
-          
+          console.log("微信授权")       
         }
       }
     })
@@ -194,6 +193,11 @@ Page({
   audit(){
     wx.navigateTo({
       url: '../audit/audit',
+    })
+  },
+  notice(){
+    wx.navigateTo({
+      url: '../notice/notice',
     })
   }
 })

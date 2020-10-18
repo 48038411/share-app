@@ -1,4 +1,4 @@
-// pages/audit/audit.js
+// pages/notice/notice.js
 const API = require('../../utils/request')
 Page({
 
@@ -6,16 +6,32 @@ Page({
    * 页面的初始数据
    */
   data: {
-    auditList: null,
+
   },
-
-
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
 
+  },
+  formSubmit: function (e) {
+    const content = e.detail.value.notice
+    console.log(content);
+    API.addNotice({
+      content: content
+    }).then(res => {
+      const req = JSON.parse(res)
+      console.log(req);
+      if(req.succ){
+        wx.showToast({
+          title: '发布成功',
+        })
+        wx.navigateBack({
+          delta: 1,
+        })
+      }
+    })
   },
 
   /**
@@ -29,15 +45,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    API.getUnAudit().then(res => {
-      const req = JSON.parse(res)
-      const that = this
-      console.log(req);
-      
-      that.setData({
-        auditList: req.data
-      })
-    })
+
   },
 
   /**
@@ -73,19 +81,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  audit(e){
-    const share = e.currentTarget.dataset.item
-    wx.navigateTo({
-      url: '../../pages/auditDetail/auditDetail?share='+JSON.stringify(share),
-    })
-  },
-  goDetail(e) {
-    // 取出绑定对象
-    console.log(e)
-    var share = e.currentTarget.dataset.item
-    wx.navigateTo({
-        url: '../shareDetail/shareDetail?share=' + JSON.stringify(share),
-    })
-},
+  }
 })

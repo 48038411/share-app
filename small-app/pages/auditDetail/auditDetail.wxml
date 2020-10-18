@@ -1,0 +1,19 @@
+<!--pages/auditDetail/auditDetail.wxml-->
+<form bindsubmit="formSubmit" class="label-list">
+<radio-group bindchange="radioChange">
+      <view class="is-original-item">
+        <text>通过</text>
+<view>
+  <radio value="0" checked="{{isOriginal == 0}}"/>
+</view>
+      </view>
+      <view class="is-original-item">
+        <text>拒绝</text>
+        <view>
+          <radio value="1" checked="{{isOriginal == 1}}"/>
+        </view>
+      </view>
+    </radio-group>
+<input type="text" name="reason" placeholder="请输入理由"></input>
+<button class="btn" form-type="submit">提交</button>
+  </form>

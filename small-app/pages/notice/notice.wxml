@@ -1,0 +1,5 @@
+<!--pages/notice/notice.wxml-->
+<form bindsubmit="formSubmit" class="label-list">
+<input type="text" name="notice" placeholder="请输入公告(将为您在首页展示)"></input>
+<button class="btn" form-type="submit">提交</button>
+  </form>

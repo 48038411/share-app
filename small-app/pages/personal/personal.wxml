@@ -19,6 +19,7 @@
 </view>
 <view class="my-manage">
 <view class="manage-item" bindtap="audit" wx:if="{{userRole == 'admin'}}">待审核资源</view>
+<view class="manage-item" bindtap="notice" wx:if="{{userRole == 'admin'}}">发布公告</view>
 <view class="manage-item" bindtap="myDuihuan">我的兑换</view>
 <view class="manage-item" bindtap="jifenLog">积分明细</view>
 <view class="manage-item" bindtap="myContribute">我的投稿</view>

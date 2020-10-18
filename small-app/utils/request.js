@@ -126,5 +126,8 @@ module.exports ={
   },
   getUnAudit:(data) => {
     return post('/admin/shares/audit/list',data,'json') //查询未审核数据
+  },
+  addNotice: (data) => {
+    return post('/notice/add',data,'json') //新增公告
   }
 }

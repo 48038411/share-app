@@ -26,7 +26,7 @@ __Terms of service__ : Terms of service
 
 === URI scheme
 [%hardbreaks]
-__Host__ : localhost:8083
+__Host__ : localhost:8082
 __BasePath__ : /
 
 
@@ -35,6 +35,7 @@ __BasePath__ : /
 * test-controller : Test Controller
 * 公告接口 : Notice Controller
 * 分享接口 : Share Controller
+* 审核接口 : Share Admin Controller
 
 
 
@@ -71,10 +72,34 @@ GET /test/baidu
 * `*/*`
 
 
+[[_byresourcesusingget]]
+==== byResources
+....
+GET /test/byResources
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
 [[_getribbonusingget]]
 ==== getRibbon
 ....
-GET /test/call/ribbon
+GET /test/call/ribbon/{id}
 ....
 
 
@@ -83,8 +108,8 @@ GET /test/call/ribbon
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Query**|**name** +
-__required__|name|string
+|**Path**|**id** +
+__required__|id|integer (int32)
 |===
 
 
@@ -201,9 +226,87 @@ __optional__|string
 * `*/*`
 
 
+[[_getuserusingget]]
+==== getUser
+....
+GET /test/users/{id}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|id|integer (int32)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_8517175d4389aafb9cbba105ba26d07a,ListenableFuture«ResponseEntity«string»»>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `*/*`
+
+
 [[_917a6a0ad3b9cec276900e3a86586a07]]
 === 公告接口
 Notice Controller
+
+
+[[_addusingpost]]
+==== 新增公告
+....
+POST /notice/add
+....
+
+
+===== Description
+新增公告
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**noticeDTO** +
+__required__|noticeDTO|<<_noticedto,NoticeDTO>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_fa86f1a57d6f758a93cb33b59c015654,公告>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
 
 
 [[_gettopnoticeusingget]]
@@ -237,6 +340,182 @@ GET /notice/one
 [[_3ecef281a805f36ea4142625eefacc12]]
 === 分享接口
 Share Controller
+
+
+[[_contributeusingpost]]
+==== 投稿接口
+....
+POST /shares/contribute
+....
+
+
+===== Description
+投稿接口
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**shareRequestDTO** +
+__required__|shareRequestDTO|<<_sharerequestdto,ShareRequestDTO>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|integer (int32)
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_exchangeusingpost]]
+==== 兑换接口
+....
+POST /shares/exchange
+....
+
+
+===== Description
+兑换接口
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**exchangeDTO** +
+__required__|exchangeDTO|<<_exchangedto,ExchangeDTO>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_c31f48f84ef207e66a03c015a7243b43,分享>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_mycontribueusingpost]]
+==== 查询我的投稿
+....
+POST /shares/myContribute
+....
+
+
+===== Description
+查询我的投稿
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**userDTO** +
+__required__|userDTO|<<_userdto,UserDTO>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_c31f48f84ef207e66a03c015a7243b43,分享>> > array
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getmyusingpost]]
+==== 查询我的兑换
+....
+POST /shares/myShare
+....
+
+
+===== Description
+查询我的兑换
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**userDTO** +
+__required__|userDTO|<<_userdto,UserDTO>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_c31f48f84ef207e66a03c015a7243b43,分享>> > array
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
 
 
 [[_getsharebyidusingget]]
@@ -293,14 +572,14 @@ GET /shares/query
 [options="header", cols=".^2,.^3,.^9,.^4,.^2"]
 |===
 |Type|Name|Description|Schema|Default
+|**Header**|**X-Token** +
+__optional__|X-Token|string|
 |**Query**|**pageNo** +
 __optional__|pageNo|integer (int32)|`1`
 |**Query**|**pageSize** +
 __optional__|pageSize|integer (int32)|`10`
 |**Query**|**title** +
 __optional__|title|string|
-|**Query**|**userId** +
-__optional__|userId|integer (int32)|
 |===
 
 
@@ -321,10 +600,132 @@ __optional__|userId|integer (int32)|
 * `*/*`
 
 
+[[_a2d9ce34f0e8e13ec795f30d3a8212de]]
+=== 审核接口
+Share Admin Controller
+
+
+[[_listusingpost]]
+==== 查询未审核的资源
+....
+POST /admin/shares/audit/list
+....
+
+
+===== Description
+查询未审核的资源
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_c31f48f84ef207e66a03c015a7243b43,分享>> > array
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_auditusingput]]
+==== 审核接口
+....
+PUT /admin/shares/audit/{id}
+....
+
+
+===== Description
+审核接口
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|id|integer (int32)
+|**Body**|**shareAuditDTO** +
+__required__|shareAuditDTO|<<_shareauditdto,ShareAuditDTO>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_c31f48f84ef207e66a03c015a7243b43,分享>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
 
 
 [[_definitions]]
 == Definitions
+
+[[_exchangedto]]
+=== ExchangeDTO
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**shareId** +
+__optional__|integer (int32)
+|**userId** +
+__optional__|integer (int32)
+|===
+
+
+[[_8517175d4389aafb9cbba105ba26d07a]]
+=== ListenableFuture«ResponseEntity«string»»
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**cancelled** +
+__optional__|boolean
+|**done** +
+__optional__|boolean
+|===
+
+
+[[_noticedto]]
+=== NoticeDTO
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**content** +
+__optional__|string
+|===
+
 
 [[_serviceinstance]]
 === ServiceInstance
@@ -348,6 +749,19 @@ __optional__|boolean
 __optional__|string
 |**uri** +
 __optional__|<<_uri,URI>>
+|===
+
+
+[[_shareauditdto]]
+=== ShareAuditDTO
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**auditStatusEnum** +
+__optional__|enum (NOT_YET, PASS, REJECT)
+|**reason** +
+__optional__|string
 |===
 
 
@@ -391,6 +805,31 @@ __optional__|string (date-time)
 __optional__|integer (int32)
 |**wxNickname** +
 __optional__|string
+|===
+
+
+[[_sharerequestdto]]
+=== ShareRequestDTO
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**author** +
+__optional__|string
+|**cover** +
+__optional__|string
+|**downloadUrl** +
+__optional__|string
+|**isOriginal** +
+__optional__|boolean
+|**price** +
+__optional__|integer (int32)
+|**summary** +
+__optional__|string
+|**title** +
+__optional__|string
+|**userId** +
+__optional__|integer (int32)
 |===
 
 

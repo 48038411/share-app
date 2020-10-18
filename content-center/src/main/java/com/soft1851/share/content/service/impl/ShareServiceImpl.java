@@ -100,11 +100,13 @@ public class ShareServiceImpl implements ShareService {
         if (StringUtil.isNotEmpty(title)) {
             criteria.andLike("title", "%" + title + "%");
         }
+        //显示的才显示,审核通过的才显示
+        criteria.andEqualTo("showFlag",1);
+        criteria.andEqualTo("auditStatus","PASS");
         //执行按条件查询
         List<Share> shares = this.shareMapper.selectByExample(example);
         //处理后的Share数据列表
         List<Share> shareDeal;
-        System.out.println(userId);
         // 1.如果用户未登录，那么downloadUrl全部设为null
         if (userId == null) {
             shareDeal = shares.stream()
@@ -158,7 +160,9 @@ public class ShareServiceImpl implements ShareService {
         this.shareMapper.updateByPrimaryKey(share);
         //3,如果是PASS,那么发送消息给rocketmq，让用户中心去消费，并为发布人添加积分
         if (AuditStatusEnum.PASS.equals(shareAuditDTO.getAuditStatusEnum())) {
-            this.midUserShareMapper.insertSelective(MidUserShare.builder().shareId(share.getId()).userId(share.getUserId()).build());
+            share.setShowFlag(true);
+            this.shareMapper.updateByPrimaryKey(share);
+            //this.midUserShareMapper.insertSelective(MidUserShare.builder().shareId(share.getId()).userId(share.getUserId()).build());
             long nowTime = System.currentTimeMillis();
             //1，rocketmq异步实现加积分
             this.rocketMQTemplate.convertAndSend(

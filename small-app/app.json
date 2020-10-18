@@ -8,7 +8,9 @@
     "pages/myDuihuan/myDuihuan",
     "pages/jifenLog/jifenLog",
     "pages/myContribute/myContribute",
-    "pages/audit/audit"
+    "pages/audit/audit",
+    "pages/auditDetail/auditDetail",
+    "pages/notice/notice"
   ],
   "window": {
     "backgroundTextStyle": "light",

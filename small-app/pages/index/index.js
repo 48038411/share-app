@@ -18,15 +18,15 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        var that = this
-        API.getNotic().then(res => {
-            that.setData({
-                notice: res.data
-            })
-        })
-        that.setData({
-            user: app.globalData.user
-        })
+        // var that = this
+        // API.getNotic().then(res => {
+        //     that.setData({
+        //         notice: res.data
+        //     })
+        // })
+        // that.setData({
+        //     user: app.globalData.user
+        // })
     },
 
     /**
@@ -42,6 +42,14 @@ Page({
     onShow: function () {
 
         var that = this
+        API.getNotic().then(res => {
+            that.setData({
+                notice: res.data
+            })
+        })
+        that.setData({
+            user: app.globalData.user
+        })
         API.getList({
             pageNo: that.data.pageNo,
             pageSize: that.data.pageSize

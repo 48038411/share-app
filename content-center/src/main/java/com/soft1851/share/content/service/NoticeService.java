@@ -1,6 +1,7 @@
 package com.soft1851.share.content.service;
 
 import com.soft1851.share.content.common.ResponseResult;
+import com.soft1851.share.content.domain.dto.NoticeDTO;
 import com.soft1851.share.content.domain.entity.Notice;
 
 /**
@@ -13,4 +14,11 @@ public interface NoticeService {
      * @return
      */
     Notice getLatest();
+
+    /**
+     * 新增公告
+     * @param noticeDTO
+     * @return
+     */
+    Notice addNotice(NoticeDTO noticeDTO);
 }
