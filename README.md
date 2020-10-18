@@ -16,7 +16,6 @@
 
   ## 目录模块，具体可点击进入项目后查看README.md
 
-  ```
   ## 基础环境
   jdk v1.8  
   mysql v8.0  
@@ -30,14 +29,12 @@
    - 微信sdk
    - swagger
   ## 项目目录结构
-  ​```shell
   
   ├─content-center 内容服务中心
   ├─user-center 用户服务中心
   ├─small-app 小程序前端项目
   ├─gateway 网关控制中心
-  ​```
-  ```
+
 
   
 
